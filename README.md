@@ -29,8 +29,6 @@ npm i --legacy-peer-deps
 > - [HJ0216](https://github.com/hj0216)
 > - [HeeGyeong01](https://github.com/HeeGyeong01)
 > - [jihyelisa](https://github.com/jihyelisa)
-> - [jihyunah](https://github.com/jihyunah)
-> - [6dreamhigh](https://github.com/6dreamhigh)
 
 
 ### Tech Stack 📚
