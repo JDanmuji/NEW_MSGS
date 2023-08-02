@@ -14,8 +14,8 @@ spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     # msgs cloud DB Info
-    url: jdbc:mysql://db-gqosa-kr.vpc-pub-cdb.ntruss.com:3306/MSGS
-    username: user
+    url: jdbc:mysql://msgs-db.mysql.database.azure.com:3306/MSGS
+    username: system
     password: msgs2023!
 
 
