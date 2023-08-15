@@ -21,6 +21,8 @@ public class UserLike {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="user_id", nullable = false)
+    // FK 설정
+    // @JoinColumn이 선언된 Entity에서 값 변환을 해야 함
     private UserEntity userLike;
 
     //join with place review
