@@ -28,7 +28,6 @@ import java.util.stream.Collectors;
 @Getter @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
 public class UserEntity implements UserDetails {
 
    @Id
@@ -37,12 +36,10 @@ public class UserEntity implements UserDetails {
 
     @PrePersist
     public void prePersist() {
-        String uuid = UUID.randomUUID().toString();
-        String userId = uuid.replaceAll("-", "").substring(0, 15);
-        this.id = userId;
+        String temp_id = "will_be_triggered";
+        this.id = temp_id;
     }
 
-   
    @Column(name = "user_type", length = 5)
    private String type;
 
@@ -79,8 +76,6 @@ public class UserEntity implements UserDetails {
    @Column(name = "user_exist" , length = 5)
    private String exist;
 
-//   @Column(name = "member_date", length = 50)
-//   private String memberDate;
    @Column(name = "reg_date", nullable = false)
    private LocalDate regDate;
    @Column(name = "mod_date", nullable = false)
@@ -91,10 +86,13 @@ public class UserEntity implements UserDetails {
    @Column(name="reg_user", columnDefinition="char(1)")
    private String regUser;
 
-   //mapping
-   //
+   // 양방향 의존관계 설정
+   // 기본적으로 단방향 의존관계 설정 후, 조회 등 필요 시에만 양방향 의존관계 설정
+   
    @OneToMany(mappedBy = "userLike")
+   // mappedBy 대상은 연관관계 대상의 필드명
    private List<UserLike> userLikes = new ArrayList<>();
+   // ArrayList로 List 객체 초기화하여 NullPointerException 방지
 
    @OneToOne(mappedBy = "userImg")
    private UserImg userImg;
