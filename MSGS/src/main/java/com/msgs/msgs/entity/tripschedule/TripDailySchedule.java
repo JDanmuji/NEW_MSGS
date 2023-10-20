@@ -1,8 +1,8 @@
 package com.msgs.msgs.entity.tripschedule;
 
+import static jakarta.persistence.FetchType.LAZY;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -16,21 +16,19 @@ import java.util.List;
 @Table(name="trip_daily_schedule", indexes = @Index(name = "trip_daily_schedule_index", columnList = "daily_id"))
 @Getter @Setter
 @NoArgsConstructor
-@AllArgsConstructor
 public class TripDailySchedule {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id @GeneratedValue
     @Column(name = "daily_id")
     private int dailyId;
 
-//    @Id
-    @ManyToOne(fetch = FetchType.LAZY)
+    //@Id
+    @ManyToOne(fetch = LAZY)
     @JoinColumn(name = "schedule_id", nullable = false)
     private TripSchedule tripSchedule;
 
-    //mapping
-    @OneToMany(mappedBy = "tripDailySchedule", fetch = FetchType.LAZY)
+    /* mapping */
+    @OneToMany(mappedBy = "tripDailySchedule", fetch = LAZY)
     private List<TripDetailSchedule> tripDetailSchedules = new ArrayList<>();
 
 }

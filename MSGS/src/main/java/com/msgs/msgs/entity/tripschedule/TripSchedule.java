@@ -1,5 +1,7 @@
 package com.msgs.msgs.entity.tripschedule;
 
+import static jakarta.persistence.FetchType.LAZY;
+
 import com.msgs.msgs.entity.tripstory.TripStory;
 import com.msgs.msgs.entity.user.UserEntity;
 import jakarta.persistence.*;
@@ -14,16 +16,13 @@ import lombok.*;
 @Table(name= "trip_schedule")
 @Getter @Setter
 @NoArgsConstructor
-@AllArgsConstructor
-@Builder
 public class TripSchedule {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id @GeneratedValue
     @Column(name = "schedule_id")
     private int id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = LAZY)
     @JoinColumn(name="user_id", nullable = false)
     private UserEntity userEntity;
 
@@ -40,22 +39,24 @@ public class TripSchedule {
     @Column(name = "mod_date")
     private LocalDateTime modDate;
 
-    //mapping
-    @OneToOne(mappedBy = "tripSchedule", fetch = FetchType.LAZY)
+    /* mapping */
+    @OneToOne(mappedBy = "tripSchedule", fetch = LAZY)
     private TripStory tripStory;
 
-    @OneToMany(mappedBy = "tripSchedule", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "tripSchedule", fetch = LAZY)
     private  List<TripDailySchedule> tripDailySchedules = new ArrayList<>();
 
+
+    /* 등록일, 수정일 등록 메서드 */
     @PrePersist
     public void setRegDate() {
         this.regDate = LocalDateTime.now();
     }
 
-    // @PreUpdate
-    // public void setModDate() {
-    //     this.modDate = LocalDateTime.now();
-    // }
+     @PreUpdate
+     public void setModDate() {
+         this.modDate = LocalDateTime.now();
+     }
 }
 
 

@@ -6,6 +6,7 @@ import com.msgs.msgs.dto.PlanBlockDTO;
 import com.msgs.msgs.dto.ScheduleRequestDTO;
 import com.msgs.tripschedule.service.TripScheduleService;
 import java.util.Map;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -22,10 +23,10 @@ import java.util.List;
 @RestController  // JSON 형식의 데이터 반환
 @RequestMapping("/tripschedule")
 @CrossOrigin(origins={"localhost:3000"})
+@RequiredArgsConstructor
 public class TripScheduleController {
 
-    @Autowired
-    private TripScheduleService tripScheduleService;
+    private final TripScheduleService tripScheduleService;
 
 
     //해당 areaCode, sigunguCode 에 해당하는 숙박 정보
@@ -84,28 +85,28 @@ public class TripScheduleController {
 
 
     //프론트에서 받은 여행일정 데이터를 DB에 Update함
-    @PostMapping("/infoUpdate")
-    public ResponseEntity<Void> updateSchedule(@RequestBody ScheduleRequestDTO scheduleRequest){
-
-        System.out.println("update Schedule Controller 실행==================================================");
-        List<String> dateList = scheduleRequest.getDateList();
-        Map<Integer, List<PlanBlockDTO>> planList = scheduleRequest.getPlanList();
-        String scheduleId = scheduleRequest.getScheduleId();
-
-        System.out.println("dateList, planList, scheduleId 받았다!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-        System.out.println(dateList);
-        System.out.println(planList);
-        System.out.println(scheduleId);
-
-        Boolean isSuccess = tripScheduleService.updateSchedule(dateList, planList, scheduleId);
-
-
-        if(isSuccess){
-            return ResponseEntity.status(HttpStatus.OK).build();
-        }else{
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
-        }
-    }
+//    @PostMapping("/infoUpdate")
+//    public ResponseEntity<Void> updateSchedule(@RequestBody ScheduleRequestDTO scheduleRequest){
+//
+//        System.out.println("update Schedule Controller 실행==================================================");
+//        List<String> dateList = scheduleRequest.getDateList();
+//        Map<Integer, List<PlanBlockDTO>> planList = scheduleRequest.getPlanList();
+//        String scheduleId = scheduleRequest.getScheduleId();
+//
+//        System.out.println("dateList, planList, scheduleId 받았다!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+//        System.out.println(dateList);
+//        System.out.println(planList);
+//        System.out.println(scheduleId);
+//
+//        Boolean isSuccess = tripScheduleService.updateSchedule(dateList, planList, scheduleId);
+//
+//
+//        if(isSuccess){
+//            return ResponseEntity.status(HttpStatus.OK).build();
+//        }else{
+//            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+//        }
+//    }
 
 
 
