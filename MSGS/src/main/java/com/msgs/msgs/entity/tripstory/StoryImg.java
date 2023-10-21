@@ -1,5 +1,6 @@
 package com.msgs.msgs.entity.tripstory;
 
+import static jakarta.persistence.FetchType.LAZY;
 
 import jakarta.persistence.*;
 import lombok.*;
@@ -11,17 +12,13 @@ import java.time.LocalDateTime;
 @Table(name="story_img", indexes = @Index(name = "story_img_index", columnList = "seq"))
 @Getter @Setter
 @NoArgsConstructor
-@AllArgsConstructor
 public class StoryImg {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY) // auto increment 설정(id 값이 null일 경우 자동 생성)
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int seq;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumns({
-            @JoinColumn(name = "story_id", nullable = false),
-    })
+    @ManyToOne(fetch = LAZY)
+    @JoinColumn(name = "story_id", nullable = false)
     private TripStory tripStoryImg;
 
     @Column(name = "img_origin_name", length = 50)
@@ -34,10 +31,17 @@ public class StoryImg {
     private LocalDateTime regDate;
     @Column(name = "mod_date")
     private LocalDateTime modDate;
-    
+
+
+    /* 등록일, 수정일 등록 메서드 */
     @PrePersist
     public void setRegDate() {
         this.regDate = LocalDateTime.now();
+    }
+
+    @PreUpdate
+    public void setModDate() {
+        this.modDate = LocalDateTime.now();
     }
 
 }

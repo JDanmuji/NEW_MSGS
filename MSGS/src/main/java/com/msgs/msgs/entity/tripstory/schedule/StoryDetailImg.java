@@ -1,6 +1,8 @@
 package com.msgs.msgs.entity.tripstory.schedule;
 
 
+import static jakarta.persistence.FetchType.LAZY;
+
 import jakarta.persistence.*;
 import java.time.LocalDateTime;
 import lombok.*;
@@ -11,14 +13,12 @@ import lombok.*;
 @Table(name="story_detail_img", indexes = @Index(name = "story_detail_img_index", columnList = "seq"))
 @Getter @Setter
 @NoArgsConstructor
-@AllArgsConstructor
 public class StoryDetailImg {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int seq;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = LAZY)
     @JoinColumns({
         @JoinColumn(name = "order_id", nullable = false),
         @JoinColumn(name = "daily_id", nullable = false)
@@ -36,9 +36,16 @@ public class StoryDetailImg {
     @Column(name = "mod_date")
     private LocalDateTime modDate;
 
+
+    /* 등록일, 수정일 등록 메서드 */
     @PrePersist
     public void setRegDate() {
         this.regDate = LocalDateTime.now();
+    }
+
+    @PreUpdate
+    public void setModDate() {
+        this.modDate = LocalDateTime.now();
     }
 
 }

@@ -1,38 +1,31 @@
 package com.msgs.msgs.entity.tripstory;
 
+import static jakarta.persistence.FetchType.LAZY;
+
 import com.msgs.msgs.entity.tripschedule.TripSchedule;
 import com.msgs.msgs.entity.user.UserEntity;
-import com.vladmihalcea.hibernate.type.json.JsonType;
 import jakarta.persistence.*;
 import java.time.LocalDateTime;
 import lombok.*;
-import org.hibernate.annotations.Type;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 @Entity
 @Table(name = "trip_story")
-@Getter
-@Setter
+@Getter @Setter
 @NoArgsConstructor
-@AllArgsConstructor
 public class TripStory {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "story_id")
 	private int id;
 
-	// join with trip schedule
-	@OneToOne(fetch = FetchType.LAZY)
+	@OneToOne(fetch = LAZY)
 	@JoinColumn(name = "schedule_id", nullable = false)
 	private TripSchedule tripSchedule;
 
-	// join with user
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = LAZY)
 	@JoinColumn(name = "user_id", nullable = false)
 	private UserEntity userTripStory;
 
@@ -56,7 +49,9 @@ public class TripStory {
 	@Column(name = "mod_date")
 	private LocalDateTime modDate;
 
-	// mapping
+
+
+	/* mapping */
 	@OneToMany(mappedBy = "tripStoryImg")
 	private List<StoryImg> storyImgs = new ArrayList<>();
 
@@ -66,9 +61,16 @@ public class TripStory {
 	@OneToMany(mappedBy = "tripLikeCnt")
 	private List<StoryLikeCount> storyLikeCounts = new ArrayList<>();
 
+
+	/* 등록일, 수정일 등록 메서드 */
 	@PrePersist
 	public void setRegDate() {
 		this.regDate = LocalDateTime.now();
+	}
+
+	@PreUpdate
+	public void setModDate() {
+		this.modDate = LocalDateTime.now();
 	}
 
 }

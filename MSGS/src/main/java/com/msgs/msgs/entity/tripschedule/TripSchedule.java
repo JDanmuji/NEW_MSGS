@@ -18,7 +18,7 @@ import lombok.*;
 @NoArgsConstructor
 public class TripSchedule {
 
-    @Id @GeneratedValue
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "schedule_id")
     private int id;
 

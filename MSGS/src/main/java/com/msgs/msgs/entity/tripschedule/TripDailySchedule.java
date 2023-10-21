@@ -18,7 +18,7 @@ import java.util.List;
 @NoArgsConstructor
 public class TripDailySchedule {
 
-    @Id @GeneratedValue
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "daily_id")
     private int dailyId;
 

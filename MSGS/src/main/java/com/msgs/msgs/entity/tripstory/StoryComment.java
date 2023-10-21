@@ -12,23 +12,18 @@ import java.time.LocalDate;
 @Table(name="story_comment", indexes = @Index(name = "story_comment_index", columnList = "seq"))
 @Getter @Setter // println 사용 시, toString이 재귀 호출되어 StackOverflowError 발생 → @Data를 @Getter, @Setter로 변경
 @NoArgsConstructor
-@AllArgsConstructor
 public class StoryComment {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY) // auto increment 설정(id 값이 null일 경우 자동 생성)
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int seq;
 
-    // @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "story_id", nullable = false)
     private TripStory tripStoryCmnt;
 
-//    @JsonIgnore // recursive error로 null 처리x
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="user_id", nullable = false)
     private UserEntity userStoryCmnt;
-
 
 
     @Column(length = 500, nullable = false)
@@ -42,8 +37,15 @@ public class StoryComment {
     @Column(name = "mod_date")
     private LocalDateTime modDate;
 
+
+    /* 등록일, 수정일 등록 메서드 */
     @PrePersist
     public void setRegDate() {
         this.regDate = LocalDateTime.now();
+    }
+
+    @PreUpdate
+    public void setModDate() {
+        this.modDate = LocalDateTime.now();
     }
 }

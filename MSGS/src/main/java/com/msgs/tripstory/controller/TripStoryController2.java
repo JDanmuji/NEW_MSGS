@@ -1,6 +1,6 @@
 package com.msgs.tripstory.controller;
 
-import com.msgs.msgs.dto.StoryResponseDTO;
+import com.msgs.tripstory.service.TripStoryService;
 import lombok.RequiredArgsConstructor;
 
 import java.util.List;
@@ -17,13 +17,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.msgs.msgs.dto.StoryCommentDTO;
-import com.msgs.msgs.entity.tripstory.StoryComment;
-import com.msgs.msgs.entity.user.UserEntity;
-import com.msgs.tripstory.service.TripStoryService;
 
 @RestController // JSON 또는 XML 형식의 데이터를 반환
 @RequestMapping("/tripstory/detail")
-@RequiredArgsConstructor // final variable에 대한 생성자 생성
+@RequiredArgsConstructor // final 필드에 대한 생성자 생성
 public class TripStoryController2 {
 
 	private final TripStoryService tripStoryService;
@@ -282,26 +279,6 @@ public class TripStoryController2 {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 	//////////////
 	// 이야기 좋아요 //
 	//////////////
@@ -358,8 +335,8 @@ public class TripStoryController2 {
 		System.out.println("코멘트 인서트" + storyCommentDTO.getStoryId());
 		System.out.println("코멘트 인서트" + storyCommentDTO.getContent());
 		
-	// 데이터 DB로 보내기
-	tripStoryService.commentInsert(storyCommentDTO);
+		// 데이터 DB로 보내기
+		tripStoryService.commentInsert(storyCommentDTO);
 	}
 }
 
