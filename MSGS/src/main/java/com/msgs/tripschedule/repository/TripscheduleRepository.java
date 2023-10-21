@@ -1,5 +1,6 @@
 package com.msgs.tripschedule.repository;
 
+import com.msgs.msgs.entity.tripschedule.DetailScheduleID;
 import com.msgs.msgs.entity.tripschedule.TripDailySchedule;
 import com.msgs.msgs.entity.tripschedule.TripDetailSchedule;
 import com.msgs.msgs.entity.tripschedule.TripSchedule;
@@ -34,6 +35,10 @@ public class TripscheduleRepository {
     /* 단건 조회 */
     public TripSchedule findScheduleById(int id){
         return em.find(TripSchedule.class, id);
+    }
+    //updateSchedule에서 쓰임.
+    public TripDetailSchedule findDetailScheduleById(DetailScheduleID detailScheId){
+        return em.find(TripDetailSchedule.class, detailScheId);
     }
 
 

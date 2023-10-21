@@ -85,28 +85,28 @@ public class TripScheduleController {
 
 
     //프론트에서 받은 여행일정 데이터를 DB에 Update함
-//    @PostMapping("/infoUpdate")
-//    public ResponseEntity<Void> updateSchedule(@RequestBody ScheduleRequestDTO scheduleRequest){
-//
-//        System.out.println("update Schedule Controller 실행==================================================");
-//        List<String> dateList = scheduleRequest.getDateList();
-//        Map<Integer, List<PlanBlockDTO>> planList = scheduleRequest.getPlanList();
-//        String scheduleId = scheduleRequest.getScheduleId();
-//
-//        System.out.println("dateList, planList, scheduleId 받았다!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-//        System.out.println(dateList);
-//        System.out.println(planList);
-//        System.out.println(scheduleId);
-//
-//        Boolean isSuccess = tripScheduleService.updateSchedule(dateList, planList, scheduleId);
-//
-//
-//        if(isSuccess){
-//            return ResponseEntity.status(HttpStatus.OK).build();
-//        }else{
-//            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
-//        }
-//    }
+    @PostMapping("/infoUpdate")
+    public ResponseEntity<Void> updateSchedule(@RequestBody ScheduleRequestDTO scheduleRequest){
+
+        System.out.println("update Schedule Controller 실행==================================================");
+        List<String> dateList = scheduleRequest.getDateList();
+        Map<Integer, List<PlanBlockDTO>> planList = scheduleRequest.getPlanList();
+        int scheduleId = Integer.parseInt(scheduleRequest.getScheduleId());
+
+        System.out.println("dateList, planList, scheduleId 받았다!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+        System.out.println(dateList);
+        System.out.println(planList);
+        System.out.println(scheduleId);
+
+        Boolean isSuccess = tripScheduleService.updateSchedule(dateList, planList, scheduleId);
+
+
+        if(isSuccess){
+            return ResponseEntity.status(HttpStatus.OK).build();
+        }else{
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+        }
+    }
 
 
 
