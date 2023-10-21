@@ -16,9 +16,9 @@ export default function EditTripSchedule() {
 	//파라미터에서 데이터 가져옴
 	const { scheduleId } = useParams()
 	const navigate = useNavigate()
-	console.log('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!scheduleId = ' + scheduleId)
+	console.log('=====================================   scheduleId = ' + scheduleId)
 
-	/* state 시작*/
+	/* state 시작 */
 	const [winReady, setWinReady] = useState(false) //window가 로드 된 시점에서 <Map/> 랜더링 하기 위함
 	const [dateList, setDateList] = useState([])
 	const [editMode, setEditMode] = useState(false) //편집모드 전환
@@ -28,29 +28,23 @@ export default function EditTripSchedule() {
 	const [planList, planListHandler] = useState({})
 	const [modalDormList, setModalDormList] = useState([]) //[{}, {}, {}]
 	const [modalPlaceList, setModalPlaceList] = useState([]) //[{}, {}, {}]
-	/* state 끝*/
+	/* state 끝 */
 
-	// useEffect[1] back-end에서 화면에 띄울 데이터 fetch해옴
-	useEffect(() => {
-		setWinReady(true)
-
-		axios
+	const getSchedule = async () => {
+		await axios
 			.get('/tripschedule/info', {
 				params: {
-					scheduleId: scheduleId,
-					// scheduleId: 2,
+					scheduleId: scheduleId, // scheduleId: 2,
 				},
 			})
 			.then(function (res) {
 				const selectedCity = CitiesData.filter((item) => item.areaTitle === res.data.areaTitle)
+				// console.log('selectedCity 객체===================')
+				// console.log(selectedCity)
+				// console.log(selectedCity[0])
+				// console.log(selectedCity[0].mapLat)
 
-				console.log('selectedCity 객체===================')
-				console.log(selectedCity)
-				console.log(selectedCity[ 0 ])
-				console.log(selectedCity[ 0 ].mapLat)
-
-				setSelectedCity(selectedCity[ 0 ])
-				
+				setSelectedCity(selectedCity[0])
 
 				// setDateList((prevState) => {
 				// 	const updatedState = res.data.dateList
@@ -61,7 +55,6 @@ export default function EditTripSchedule() {
 				// 	return updatedState
 				// })
 
-				
 				setDateList(res.data.dateList) //배열로 받음
 				planListHandler(res.data.planList) //객체 안에 배열안에 객체
 				console.log(res.data.planList)
@@ -71,9 +64,14 @@ export default function EditTripSchedule() {
 			.catch(function (error) {
 				console.log('get_info 실패', error)
 			})
+	}
+
+	// useEffect[1] back-end에서 화면에 띄울 데이터 fetch해옴
+	useEffect(() => {
+		setWinReady(true)
+		getSchedule();
 	}, [])
 
-	
 	// useEffect[2]
 	useEffect(() => {
 		/*모달창에 띄울 쓸 숙박, 장소 item들 정보 받아옴*/
@@ -114,7 +112,6 @@ export default function EditTripSchedule() {
 				})
 	}, [selectedCity])
 
-	
 	/*
 	useEffect(() => {
 		console.log(dateList)
@@ -137,7 +134,7 @@ export default function EditTripSchedule() {
 			planList: planList,
 			dateList: dateList,
 			// cityName: selectedCity.areaTitle,
-			scheduleId: scheduleId
+			scheduleId: scheduleId,
 		}
 
 		axios
@@ -148,8 +145,8 @@ export default function EditTripSchedule() {
 			.catch(function (error) {
 				console.log('updateTripSchedule  실패', error)
 			})
-		
-		alert("일정 편집이 완료되었습니다.")
+
+		alert('일정 편집이 완료되었습니다.')
 		navigate('/mypage')
 	}
 
