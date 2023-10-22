@@ -33,9 +33,9 @@ const TripStoryComment = (props) => {
     // back-end에서 댓글 목록 호출
     const getData = async () => {
         try {
-            const response = await axios.post(
-                "/tripstory/detail/getCommentList",
-                { storyId }
+            const response = await axios.get(
+                "/tripstory/comments",
+                { params: { storyId } }
             );
             setData(response.data);
             console.log("==========getCommentList", response.data);
@@ -54,7 +54,7 @@ const TripStoryComment = (props) => {
             if (newContent.trim()) {
                 // 댓글 등록
                 const response = await axios.post(
-                    "/tripstory/detail/commentInsert",
+                    "/tripstory/comment",
                     { userId, storyId, content: newContent.trim() }
                 );
 

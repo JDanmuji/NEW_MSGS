@@ -337,14 +337,21 @@ public class TripStoryService {
 	}
 
 
+	/* 특정 TripStory에 대한 1.좋아요 수와 현재 로그인한 아이디가 이 TripStory에 2.좋아요를 눌렀는지 여부 데이터 보냄 */
+	public Map<String, Object> getStoryLike(int storyId) {
 
-	@Transactional /* 이야기 좋아요 */
-	public void storyLike(StoryLikeCountDTO storyLikeCountDTO) {
+		//예시코드
+		//storyRepo.findStoryLike(stodyId)
+		int likeCnt = 17;
+		Boolean isLiked = true;
 
-		storyLikeCountDTO.setStoryId("");
+		Map<String, Object> responseMap = new HashMap<>();
+		responseMap.put("likeCnt", likeCnt);
+		responseMap.put("isLiked", isLiked);
 
-		storyLikeCountDTO.setUserId("msgs01");
-//		tripStoryDAO.save(storyLikeCountDTO);
+		return responseMap;
+
+		//tripStoryDAO.save(storyLikeCountDTO);
 	}
 
 
@@ -354,8 +361,8 @@ public class TripStoryService {
 
 		// seq 값은 자동 생성되므로 set 사용 X
 		storyComment.setContent(storyCommentDTO.getContent());
-		storyComment.setRegDate(storyCommentDTO.getRegDate());
-		storyComment.setModDate(storyCommentDTO.getModDate());
+//		storyComment.setRegDate(storyCommentDTO.getRegDate());
+//		storyComment.setModDate(storyCommentDTO.getModDate());
 
 		// storyId 이용한 TripStory 엔티티 반환
 		Optional<TripStory> tripStory = storyDAO.findById(storyCommentDTO.getStoryId());

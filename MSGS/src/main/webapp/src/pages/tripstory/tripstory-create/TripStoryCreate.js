@@ -311,7 +311,7 @@ export default function TripStoryCreate() {
 			})
 
 		// 좋아요 데이터 가져오기  -> 스토리 생성이 아닌 수정 페이지에서 필요함.
-		// const likeResponse = await axios.post('/tripstory/detail/getStoryLike', { storyId, userId })
+		// const likeResponse = await axios.get('/tripstory/like', { storyId, userId })
 		// setIsLiked(likeResponse.data.isLiked)
 		// setLikeCnt(likeResponse.data.likeCnt)
 	}
