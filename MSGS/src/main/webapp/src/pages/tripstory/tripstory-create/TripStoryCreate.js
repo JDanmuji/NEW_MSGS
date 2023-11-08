@@ -406,7 +406,7 @@ export default function TripStoryCreate() {
 
 	return (
 		<>
-			{!dailyComment || !(Object.keys(storyList).length > 0) || !(mapDataList.length >0) ? (
+			{!dailyComment || !(Object.keys(storyList).length > 0) || !(mapDataList.length > 0) ? (
 				<Loading />
 			) : (
 				<div className={styles['width-wrapper']}>
@@ -421,7 +421,13 @@ export default function TripStoryCreate() {
 						</div>
 					}
 					<div className={styles['tripstory-title']}>
-						<input className={styles['story-title']} type='text' value={storySummary.title} onChange={handleWriteTitle} />
+						<input
+							className={styles['story-title']}
+							type='text'
+							placeholder='여행 이야기 제목(필수)'
+							value={storySummary.title}
+							onChange={handleWriteTitle}
+						/>
 					</div>
 					<div className={styles['star-score-area']}>
 						<div className={styles['trip-score-ment']}>이번 여행 이야기의 총 평점을 입력해주세요.</div>

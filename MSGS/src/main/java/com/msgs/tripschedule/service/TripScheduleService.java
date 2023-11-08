@@ -40,14 +40,12 @@ public class TripScheduleService {
     private String decodingKey;
 
     List<Integer> contentTypeIds = Arrays.asList(12, 39); //place의 contentId 저장해놓음. 12=관광지, 39=음식점
+
     Gson gson = new Gson();
 
-
-
+    private final UserDAO userDAO;
     private final TripscheduleRepository scheduleRepo;
 
-    @Autowired
-    private UserDAO userDAO;
 
 
 
@@ -257,6 +255,7 @@ public class TripScheduleService {
                         tripDetail.setMapx(planBlockDTO.getMapx());
                         tripDetail.setMapy(planBlockDTO.getMapy());
                         tripDetail.setContentid(planBlockDTO.getContentid());
+                        tripDetail.setFirstimage2(planBlockDTO.getFirstimage2());
 
                         scheduleRepo.saveDetailSchedule(tripDetail);
 
@@ -316,6 +315,7 @@ public class TripScheduleService {
                 planblock.setMapx(detailSchedule.getMapx());
                 planblock.setMapy(detailSchedule.getMapy());
                 planblock.setContentid(detailSchedule.getContentid());
+                planblock.setFirstimage2(detailSchedule.getFirstimage2());
 
                 System.out.println("sche3333333333333333333333333333333333333333");
 

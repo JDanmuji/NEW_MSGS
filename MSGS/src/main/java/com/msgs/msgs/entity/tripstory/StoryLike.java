@@ -8,10 +8,10 @@ import jakarta.persistence.*;
 import lombok.*;
 
 @Entity
-@Table(name="story_like_count", indexes = @Index(name = "story_like_count_index", columnList = "seq"))
+@Table(name="story_like", indexes = @Index(name = "story_like_index", columnList = "seq"))
 @Getter @Setter
 @NoArgsConstructor
-public class StoryLikeCount {
+public class StoryLike {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int seq;

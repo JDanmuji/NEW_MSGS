@@ -19,6 +19,7 @@ public class TripscheduleRepository {
 
     private final EntityManager em;
 
+    /* TripSchedule 저장 */
     public void saveSchedule(TripSchedule tripSchedule){
         em.persist(tripSchedule); //영속성 컨텍스트에 멤버 객체(엔티티)를 넣음. 나중에 트랜잭션 커밋 되는 시점에 DB에 넣음(=insert 쿼리 실행함)
     }
@@ -36,6 +37,7 @@ public class TripscheduleRepository {
     public TripSchedule findScheduleById(int id){
         return em.find(TripSchedule.class, id);
     }
+
     //updateSchedule에서 쓰임.
     public TripDetailSchedule findDetailScheduleById(DetailScheduleID detailScheId){
         return em.find(TripDetailSchedule.class, detailScheId);

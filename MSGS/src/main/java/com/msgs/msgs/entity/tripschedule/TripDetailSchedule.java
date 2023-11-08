@@ -28,7 +28,7 @@ public class TripDetailSchedule {
     @Column(name = "place_order", nullable = false)
     private int placeOrder;
 
-    @Column(length = 10, name = "content_id")
+    @Column(name = "content_id", length = 10)
     private String contentid;
 
     @Column(length = 50)
@@ -45,6 +45,9 @@ public class TripDetailSchedule {
 
     @Column(name = "map_y", columnDefinition = "decimal(10, 6)")
     private Double mapy;
+
+    @Column(name = "place_img_url", length = 100)
+    private String firstimage2;
 
 
 

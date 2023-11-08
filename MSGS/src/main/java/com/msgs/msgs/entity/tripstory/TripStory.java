@@ -59,7 +59,7 @@ public class TripStory {
 	private List<StoryComment> storyComments = new ArrayList<>();
 
 	@OneToMany(mappedBy = "tripLikeCnt")
-	private List<StoryLikeCount> storyLikeCounts = new ArrayList<>();
+	private List<StoryLike> storyLikes = new ArrayList<>();
 
 
 	/* 등록일, 수정일 등록 메서드 */

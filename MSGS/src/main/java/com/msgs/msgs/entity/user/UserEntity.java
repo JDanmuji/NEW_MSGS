@@ -3,24 +3,19 @@ package com.msgs.msgs.entity.user;
 import com.msgs.msgs.entity.placereview.PlaceReview;
 import com.msgs.msgs.entity.tripschedule.TripSchedule;
 import com.msgs.msgs.entity.tripstory.StoryComment;
-import com.msgs.msgs.entity.tripstory.StoryLikeCount;
+import com.msgs.msgs.entity.tripstory.StoryLike;
 import com.msgs.msgs.entity.tripstory.TripStory;
-import com.msgs.user.dao.UserDAO;
 
 import jakarta.persistence.*;
 import lombok.*;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
-import java.util.UUID;
-import java.util.stream.Collectors;
 
 
 @Entity
@@ -78,7 +73,7 @@ public class UserEntity implements UserDetails {
 
    @Column(name = "reg_date", nullable = false)
    private LocalDate regDate;
-   @Column(name = "mod_date", nullable = false)
+   @Column(name = "mod_date")
    private LocalDate modDate;
 
    @Column(name="location_consent", columnDefinition="char(1)")
@@ -113,7 +108,7 @@ public class UserEntity implements UserDetails {
    private List<StoryComment> storyComment = new ArrayList<>();
 
    @OneToMany(mappedBy = "userStoryLike")
-   private List<StoryLikeCount> storyLikeCount = new ArrayList<>();
+   private List<StoryLike> storyLike = new ArrayList<>();
 
 
    //jwt

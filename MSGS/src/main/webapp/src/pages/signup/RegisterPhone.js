@@ -100,7 +100,7 @@ const RegisterPhone = (props) => {
         console.log(props.allData); // 동의(2), 이메일, 닉네임, 비밀번호
         console.log(props.allData.agreementValue.agreementValue[0]);
         console.log(to); // 전화번호
-        alert("dfadfadfafds");
+        alert("휴대폰 인증이 완료되었습니다");
 
         const data = {
             id: Math.random(), // DB에서 부여 예정
