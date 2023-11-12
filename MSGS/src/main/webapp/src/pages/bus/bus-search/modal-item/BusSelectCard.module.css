@@ -1,0 +1,96 @@
+.bus-card-wrap {
+    max-width: 420px;
+    min-width: 420px;
+    height: 100%;
+    background-color: rgba(240, 240, 240);
+    border-radius: 8px;
+}
+.bus-card-checked-wrap {
+    background: #FFE6C7;
+}
+
+.bus-card-checked-wrap div.card-header-wrap {
+    background-color: #FFA559;
+}
+
+.card-header-wrap {
+    display: flex;
+    align-items: center;
+    height: 4.8rem;
+    color: rgb(255, 255, 255);
+    background-color: #999;
+    border-radius: 8px 8px 0 0;
+}
+
+.card-head-left {
+    margin-left: 1.8rem;
+    margin-right: auto;
+    font-size: 1.8rem;
+    flex-grow: 1;
+    font-weight: 600;
+}
+.card-head-right {
+    flex-shrink: 0;
+    margin-right: 10px;
+    font-size: 1.6rem;
+    font-weight: 600;
+}
+.card-head-img-wrap {
+    width: 3rem;
+    height: 3rem;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+.card-head-img-wrap img {
+    width: 2rem;
+    height: 2rem;
+    filter: invert(1);
+}
+
+.card-detail {
+    padding: 2.3rem 1.8rem 2.4rem;
+    position: relative;
+}
+.card-detail > div:first-child {
+    display: flex;
+    align-items: center;
+    margin-right: auto;
+}
+.card-detail-info {
+    margin-top: 1.2rem;
+    width: 100%;
+    display: flex;
+    flex: 1; /*컨테이너의 크기에 맞춰 item 확장*/
+    font-size: 1.4rem;
+    font-weight: 500;
+    color: rgb(58, 58, 58);
+    text-align: right;
+}
+.card-detail-info-right {
+    margin-left: auto;
+    min-width: 15rem;
+}
+
+.card-charge-wrap {
+    margin-top: 1.5rem;
+    text-align: right;
+}
+.card-charge-grade {
+    margin-right: 10px;
+    font-size: 1.3rem;
+    color: rgba(58, 58, 58, 0.8);
+}
+.card-charge {
+    font-size: 1.5rem;
+    color: rgba(58, 58, 58);
+    font-weight: bold;
+}
+.empty-card {
+    margin: auto;
+    font-size: 1.7rem;
+    height: 13.043rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

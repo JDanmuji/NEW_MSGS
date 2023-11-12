@@ -1,0 +1,70 @@
+hr {
+    border: solid 1px hsl(0, 0%, 87%);
+    width: auto;
+}
+.map-wrap {
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+
+.date-summary {
+    display: flex;
+    margin-top: -100px;
+    padding: 0;
+    height: 150px;
+    background-color: white;
+    /* z-index: 1; */
+    border-radius: 4rem;
+    margin-left: 5px;
+    justify-content: space-between;
+    
+    
+}
+
+.trip-date {
+    display: flex;
+    margin-top: 50px;
+    font-size: 3.4rem;
+    color:black;
+    margin-left: 0px;
+    width: 990px;
+    height: 50px;
+    justify-content: flex-start;
+    align-items: center;
+    font-weight: 900;
+}
+
+.trip-date h5:first-child {
+    padding-right: 2rem;
+}
+
+.trip-date h5:last-child {
+    padding-left: 2rem;
+}
+
+
+.trip-date hr {
+    background-color : orange;
+    height: 3rem;
+    width: 0;
+    border-right: 0;
+}
+
+.write-icon {
+    display: flex;
+    height: 40px;
+    width: auto;
+    margin-top: 55px;
+    margin-right: 2px;
+    cursor: pointer;
+}
+
+.day-modal-comment {
+    font-size: 2.0rem;
+    background-color: #fff1e6;
+    padding: 5rem;
+    margin-top: -5rem;
+    margin-bottom: 3rem;
+    border-radius: 1rem;
+}

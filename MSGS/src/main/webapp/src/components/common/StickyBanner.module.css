@@ -1,0 +1,72 @@
+.banner-area {
+    position: fixed;
+    top: 0;
+    right: 0;
+    z-index: 100;
+}
+.sticky-banner {
+    position: absolute;
+    top: calc(70px + 6rem);
+    right: 2rem;
+    z-index: 100;
+    width: 16rem;
+    height: 30rem;
+    border-radius: 20px;
+    overflow: hidden;
+
+    display: flex;
+    flex-direction: column;
+
+    background: #fc7300; /* fallback for old browsers */
+    background: -webkit-linear-gradient(
+        to top,
+        #f7b733,
+        #fc4a1a
+    ); /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(
+        to top,
+        #f7b733,
+        #fc4a1a
+    ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+    box-shadow: 0 0.6rem 1.2rem rgba(0, 0, 0, 0.16);
+}
+.sticky-banner-title {
+    color: #fff;
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin: 1.6rem 0 0 2.4rem;
+}
+.banner-plan {
+    height: 15rem;
+    margin: 0 2.4rem;
+    padding: 2.5rem 0;
+
+    color: #fff;
+    font-size: 1.6rem;
+    font-weight: 700;
+
+    border-bottom: solid 1px #fff;
+}
+/* .banner-plan :first-child {
+    border-bottom: solid 1px #fff;
+} */
+.plan-destination {
+    display: flex;
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+.plan-destination div {
+    display: flex;
+    flex-direction: column;
+}
+.plan-destination img {
+    width: 4rem;
+    height: 4rem;
+    border-radius: 50%;
+    background-color: #ddd;
+}
+.plan-date {
+    font-size: 1.3rem;
+    text-align: center;
+}

@@ -1,0 +1,33 @@
+@font-face {
+    font-family: "MBC1961GulimM";
+    src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-01@1.0/MBC1961GulimM.woff2")
+        format("woff2");
+    font-weight: normal;
+    font-style: normal;
+}
+
+.header {
+    min-width: 900px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    height: 70px;
+    padding: 0 10rem;
+    border-bottom: solid 1px #ddd;
+    background-color: #fff;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.logo {
+    height: 4.2rem;
+    font-size: 4rem;
+    color: #fc7300;
+    font-family: "MBC1961GulimM", "san-serif";
+}
+.main-nav {
+    font-size: 1.6rem;
+    display: flex;
+    gap: 48px;
+}

@@ -1,0 +1,88 @@
+.mypage-wrap {
+    min-width: 90rem;
+    max-width: 90rem;
+    margin: 0 auto 8rem;
+}
+
+/* 프로필 영역 */
+.profile-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+    margin: 6rem 0;
+}
+.profile-image img {
+    background-color: #ddd;
+    width: 15rem;
+    height: 15rem;
+    /* border: 1px solid lightgray; */
+    border-radius: 50%;
+    object-fit: cover;
+}
+.update-profile-button {
+    border-radius: 6px;
+    padding: 1rem 2rem;
+    background-color: #fc7300;
+    color: #fff;
+    font-size: 1.6rem;
+    font-weight: 700;
+}
+
+/* 조회 list 영역*/
+.list-sort-section {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    gap: 3rem;
+}
+.list-menu-nav {
+    width: 90rem;
+    display: flex;
+    justify-content: center;
+
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 6rem;
+
+    text-align: center;
+    color: #aaa;
+    cursor: pointer;
+}
+.not-selected-list-menu-nav {
+    width: 30rem;
+    padding: 1.5rem 0;
+    border-bottom: 4px solid #aaa;
+}
+.not-selected-list-menu-nav > span,
+.selected-list-menu-nav > span {
+    margin-left: 1rem;
+}
+.not-selected-list-menu-nav:hover,
+.selected-list-menu-nav {
+    width: 30rem;
+    padding: 1.5rem 0;
+    border-bottom: 4px solid #fc7300;
+    color: #fc7300;
+}
+
+.list-menu > div {
+    border-bottom: #fc7300;
+}
+.list-title-text {
+    display: flex;
+    margin: 4rem 0;
+    font-size: 2.4rem;
+    font-weight: 700;
+}
+.list-title-text > span {
+    color: #fc7300;
+    margin-left: 1rem;
+}
+
+.list-sort-section {
+    display: flex;
+    flex-direction: column;
+    gap: 4rem;
+}
