@@ -67,9 +67,7 @@ public class UserEntity implements UserDetails {
 
    @Column(name = "user_name", length = 30)
    private String name;
-   
-   @Column(name = "user_exist" , length = 5)
-   private String exist;
+
 
    @Column(name = "reg_date", nullable = false)
    private LocalDate regDate;
@@ -80,6 +78,10 @@ public class UserEntity implements UserDetails {
    private String locationConsent;
    @Column(name="reg_user", columnDefinition="char(1)")
    private String regUser;
+
+   private boolean withdraw = false;
+
+
 
    // 양방향 의존관계 설정
    // 기본적으로 단방향 의존관계 설정 후, 조회 등 필요 시에만 양방향 의존관계 설정
