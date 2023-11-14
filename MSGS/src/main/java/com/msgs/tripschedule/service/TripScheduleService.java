@@ -21,7 +21,6 @@ import lombok.RequiredArgsConstructor;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.json.XML;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
@@ -278,7 +277,7 @@ public class TripScheduleService {
         Map<String, Object> responseMap = new HashMap<>();
 
         /* schedule_id 이용해서 SchduleEntity 엔티티 가져오기 */
-        TripSchedule resultSchedule = scheduleRepo.findScheduleById(scheduleId);
+        TripSchedule resultSchedule = scheduleRepo.findById(scheduleId);
 
         System.out.println("Sche111111111111111111111111111111111111111111111111");
         /* [1] areaTitle */
@@ -352,7 +351,7 @@ public class TripScheduleService {
             UserEntity resultUserEntity = userEntity.get();
 
             /*TRIP_SCHEDULE 업데이트 -> mod_date(수정 시간) 컬럼 추가하기 위함*/
-            TripSchedule tripSchedule = scheduleRepo.findScheduleById(scheduleId); // id 이용해서 TripSchedule 엔티티 가져오기
+            TripSchedule tripSchedule = scheduleRepo.findById(scheduleId); // id 이용해서 TripSchedule 엔티티 가져오기
 
             tripSchedule.setModDate(LocalDateTime.now());
 
@@ -409,5 +408,9 @@ public class TripScheduleService {
 
     }
 
-
+    @Transactional   /*해당 tripschedule을 삭제 */
+    public void deleteSchedule(int id) {
+        TripSchedule schedule = scheduleRepo.findById(id);
+        schedule.setDeleted(true);
+    }
 }

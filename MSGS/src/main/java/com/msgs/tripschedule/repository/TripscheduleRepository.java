@@ -5,13 +5,10 @@ import com.msgs.msgs.entity.tripschedule.TripDailySchedule;
 import com.msgs.msgs.entity.tripschedule.TripDetailSchedule;
 import com.msgs.msgs.entity.tripschedule.TripSchedule;
 import jakarta.persistence.EntityManager;
-import jakarta.persistence.PersistenceContext;
 
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
-
-import org.springframework.transaction.annotation.Transactional;
 
 @Repository
 @RequiredArgsConstructor
@@ -34,7 +31,7 @@ public class TripscheduleRepository {
 
 
     /* 단건 조회 */
-    public TripSchedule findScheduleById(int id){
+    public TripSchedule findById(int id){
         return em.find(TripSchedule.class, id);
     }
 

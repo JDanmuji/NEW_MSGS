@@ -39,6 +39,9 @@ public class TripSchedule {
     @Column(name = "mod_date")
     private LocalDateTime modDate;
 
+    @Column(name = "is_deleted")
+    private boolean isDeleted = false;
+
     /* mapping */
     @OneToOne(mappedBy = "tripSchedule", fetch = LAZY)
     private TripStory tripStory;
