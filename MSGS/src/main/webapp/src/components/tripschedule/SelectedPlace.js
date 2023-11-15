@@ -24,7 +24,7 @@ export default function SelectedPlace({ order, item, selectedDay }) {
 				</div>
 				<div className={style['text-area']}>
 					{/* <div className={style['place-title']}>{item?.title}</div> */}
-					<div className={style['place-title']}>{item?.title.length < 9 ? item?.title : item?.title.slice(0, 9) + '..'}</div>
+					<div className={style['place-title']}>{item?.title.length < 8 ? item?.title : item?.title.slice(0, 8) + '..'}</div>
 
 					<div className={style['text3-svg-wrapper']}>
 						<div className={style['text-3']}>

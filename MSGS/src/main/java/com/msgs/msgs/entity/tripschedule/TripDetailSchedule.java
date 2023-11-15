@@ -1,5 +1,7 @@
 package com.msgs.msgs.entity.tripschedule;
 
+import static jakarta.persistence.FetchType.LAZY;
+
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -8,16 +10,14 @@ import lombok.*;
 @Table(name = "trip_detail_schedule")
 @Getter @Setter
 @NoArgsConstructor
-@AllArgsConstructor
 public class TripDetailSchedule {
 
     @Id
     @Column(name="order_id")
     private int order;
 
-    //join with trip schedule
     @Id
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = LAZY)
     @JoinColumn(name = "daily_id", nullable = false)
     private TripDailySchedule tripDailySchedule;
 
@@ -27,6 +27,9 @@ public class TripDetailSchedule {
 
     @Column(name = "place_order", nullable = false)
     private int placeOrder;
+
+    @Column(name = "content_id", length = 10)
+    private String contentid;
 
     @Column(length = 50)
     private String title;
@@ -43,8 +46,10 @@ public class TripDetailSchedule {
     @Column(name = "map_y", columnDefinition = "decimal(10, 6)")
     private Double mapy;
 
-    @Column(length = 10, name = "content_id")
-    private String contentid;
+    @Column(name = "place_img_url", length = 100)
+    private String firstimage2;
+
+
 
 
 }

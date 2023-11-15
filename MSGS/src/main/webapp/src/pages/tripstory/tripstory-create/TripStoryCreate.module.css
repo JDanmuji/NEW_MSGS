@@ -41,12 +41,13 @@
     color:#fc7300;
     justify-content: center;
     align-items: center;
-    font-weight: bold;
+    /* font-weight: bold; */
+    font-weight: 500;
 }
 
 
 .tripstory-title input::placeholder {
-    color: #fc7300;
+    color: #fc71009c;
 }
 
 

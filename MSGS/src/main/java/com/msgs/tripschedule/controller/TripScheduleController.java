@@ -6,11 +6,14 @@ import com.msgs.msgs.dto.PlanBlockDTO;
 import com.msgs.msgs.dto.ScheduleRequestDTO;
 import com.msgs.tripschedule.service.TripScheduleService;
 import java.util.Map;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,10 +25,10 @@ import java.util.List;
 @RestController  // JSON 형식의 데이터 반환
 @RequestMapping("/tripschedule")
 @CrossOrigin(origins={"localhost:3000"})
+@RequiredArgsConstructor
 public class TripScheduleController {
 
-    @Autowired
-    private TripScheduleService tripScheduleService;
+    private final TripScheduleService tripScheduleService;
 
 
     //해당 areaCode, sigunguCode 에 해당하는 숙박 정보
@@ -36,11 +39,13 @@ public class TripScheduleController {
         return tripScheduleService.getDormList(areaCode, sigunguCodeList);
     }
 
+
     //해당 areaCode, sigunguCode 에 해당하는 관광지, 음식점 정보
     @GetMapping("/placeInfo")
     public List<PlaceInfoDTO> getPlaceList(@RequestParam int areaCode, @RequestParam List<Integer> sigunguCodeList) {
         return tripScheduleService.getPlaceList(areaCode, sigunguCodeList);
     }
+
 
     //프론트에서 받은 여행일정 데이터를 DB에 저장함
     @PostMapping("/info")
@@ -67,19 +72,11 @@ public class TripScheduleController {
 
 
 
-
-
-
-
-
-
-
     // Edit TripSchedule 하기 위해, 해당 schedule_id 에 해당하는 여행일정 정보 반환함
     @GetMapping("/info")
     public Map<String, Object> getSchedule(@RequestParam int scheduleId) {
         return tripScheduleService.getSchedule(scheduleId);
     }
-
 
 
 
@@ -90,7 +87,7 @@ public class TripScheduleController {
         System.out.println("update Schedule Controller 실행==================================================");
         List<String> dateList = scheduleRequest.getDateList();
         Map<Integer, List<PlanBlockDTO>> planList = scheduleRequest.getPlanList();
-        String scheduleId = scheduleRequest.getScheduleId();
+        int scheduleId = Integer.parseInt(scheduleRequest.getScheduleId());
 
         System.out.println("dateList, planList, scheduleId 받았다!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
         System.out.println(dateList);
@@ -107,9 +104,18 @@ public class TripScheduleController {
         }
     }
 
+    //해당 여행일정을 DB에서 삭제함
+    @DeleteMapping("/{id}")
+    public ResponseEntity<String> deleteSchedule(@PathVariable int id) {
+        try {
+            tripScheduleService.deleteSchedule(id);
+            return new ResponseEntity<>("리소스 삭제 성공", HttpStatus.OK);
+
+        } catch(Exception e) {
+            return new ResponseEntity<>("리소스 삭제 실패", HttpStatus.INTERNAL_SERVER_ERROR);
+        }
 
 
-
-
+    }
 
 }

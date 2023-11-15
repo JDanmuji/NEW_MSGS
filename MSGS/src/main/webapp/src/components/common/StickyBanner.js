@@ -53,7 +53,7 @@ const StickyBanner = () => {
   return (
     <>
     {
-    tokenValue && data && (
+    (tokenValue && (data.length > 0) )&& (
   
         <div className={styles["banner-area"]}>
           <div className={styles["sticky-banner"]}>

@@ -12,36 +12,37 @@ const TripStoryList = () => {
 
   const getData = async () => {
     try {
-      const response = await axios.post("/tripstory/getStoryList");
-      const data = {};
+			//모든 여행 이야기(TripStory)를 불러옴
+			const response = await axios.get("/tripstory")
+			const data = {}
 
-      // 데이터 형태 재구성
-      response.data.forEach((item) => {
-        const storyId = item.storyId;
+			// 데이터 형태 재구성
+			response.data.forEach((item) => {
+				const storyId = item.storyId
 
-        if (!data[storyId]) {
-          data[storyId] = {
-            storyId: storyId,
-            scheduleId: item.scheduleId,
-            title: item.title,
-            comment: item.comment,
-            dateList: item.dateList,
-            userId: item.userId,
-            userName: item.userName,
-            userImgPath: item.userImgPath,
-            storyImgs: [],
-          };
-        }
+				if (!data[storyId]) {
+					data[storyId] = {
+						storyId: storyId,
+						scheduleId: item.scheduleId,
+						title: item.title,
+						comment: item.comment,
+						dateList: item.dateList,
+						userId: item.userId,
+						userName: item.userName,
+						userImgPath: item.userImgPath,
+						storyImgs: [],
+					}
+				}
 
-        if (item.storyImgPath && item.storyImgPath.length > 0) {
-          data[storyId].storyImgs.push(item.storyImgPath);
-        }
-      });
+				if (item.storyImgPath && item.storyImgPath.length > 0) {
+					data[storyId].storyImgs.push(item.storyImgPath)
+				}
+			})
 
-      setData(Object.values(data));
-      console.log("=====getStoryList=====", Object.values(data));
-      // console.log("======data======", data['001'].storyId) // tripId 출력 방법
-    } catch (error) {
+			setData(Object.values(data))
+			console.log("=====getStoryList=====", Object.values(data))
+			// console.log("======data======", data['001'].storyId) // tripId 출력 방법
+		} catch (error) {
       console.log(error);
     }
   };
