@@ -88,7 +88,7 @@ public class UserEntity implements UserDetails {
    
    @OneToMany(mappedBy = "userLike")
    // mappedBy 대상은 연관관계 대상의 필드명
-   private List<UserLike> userLikes = new ArrayList<>();
+   private List<PlaceLike> userLikes = new ArrayList<>();
    // ArrayList로 List 객체 초기화하여 NullPointerException 방지
 
    @OneToOne(mappedBy = "userImg")
