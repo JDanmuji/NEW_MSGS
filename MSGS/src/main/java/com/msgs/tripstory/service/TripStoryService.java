@@ -349,8 +349,9 @@ public class TripStoryService {
 	}
 
 	private void createAndSaveStoryPlace(StoryDailySchedule storyDaily, int day, StoryBlockDTO storyBlockDTO) {
+
 		StoryPlace storyPlace = new StoryPlace();
-		
+
 		storyPlace.setOrderId(storyBlockDTO.getOrder());
 		storyPlace.setStoryDailySchedule(storyDaily);
 		storyPlace.setOrderDay(day);
