@@ -6,6 +6,7 @@ import com.msgs.msgs.entity.tripschedule.TripDailySchedule;
 import com.msgs.msgs.entity.tripschedule.TripDetailSchedule;
 import com.msgs.msgs.entity.tripschedule.TripSchedule;
 import com.msgs.msgs.entity.user.UserEntity;
+import com.msgs.msgs.jwt.JwtTokenProvider;
 import com.msgs.tripschedule.repository.TripscheduleRepository;
 import com.msgs.user.dao.UserDAO;
 import java.time.LocalDateTime;
@@ -37,6 +38,9 @@ public class TripScheduleService {
 
     @Value("${tourApi.decodingKey}")
     private String decodingKey;
+
+    @Value("${jwt.secret}")
+    private String secretKey;
 
     List<Integer> contentTypeIds = Arrays.asList(12, 39); //place의 contentId 저장해놓음. 12=관광지, 39=음식점
 
@@ -203,11 +207,16 @@ public class TripScheduleService {
 
 
     @Transactional   /* planList(tripSchedule 페이지에서 입력한 일정)를 저장함 */
-    public Boolean saveSchedule(List<String> dateList, Map<Integer, List<PlanBlockDTO>> planList, String cityName){
+    public Boolean saveSchedule(List<String> dateList, Map<Integer, List<PlanBlockDTO>> planList, String cityName, String userToken){
 
         try{
             /*TRIP_SCHEDULE*/
-            Optional<UserEntity> userEntity = userDAO.findById("yhg9801"); // id 이용해서 UserEntity 엔티티 가져오기 */
+            JwtTokenProvider token = new JwtTokenProvider(secretKey);
+            System.out.println("데이터 저장됨?");
+            System.out.println(token.getAuthentication(userToken));
+
+            Optional<UserEntity> userEntity = userDAO.findById(token.getAuthentication(userToken).toString());
+            //Optional<UserEntity> userEntity = userDAO.findById("yhg9801"); // id 이용해서 UserEntity 엔티티 가져오기 */
             UserEntity resultUserEntity = userEntity.get();
 
             //1. 여행일정 ID는 seq 값이 자동으로 들어감
@@ -347,6 +356,8 @@ public class TripScheduleService {
     public Boolean updateSchedule(List<String> dateList, Map<Integer, List<PlanBlockDTO>> planList, int scheduleId){
 
         try{
+
+            //JwtTokenProvider token = new JwtTokenProvider(userToken);
             Optional<UserEntity> userEntity = userDAO.findById("yhg9801"); // id 이용해서 UserEntity 엔티티 가져오기 */
             UserEntity resultUserEntity = userEntity.get();
 

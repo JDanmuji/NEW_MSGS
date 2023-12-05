@@ -35,8 +35,10 @@ const KaKaoCallback = (props) => {
             console.log("data 확인: ", data);
             console.log("토큰 확인: ", token);
             Cookies.set("token", token, { expires: 1 });
+            localStorage.setItem("token", token, { expires: 1 })
 
-            const tokenValue = Cookies.get("token");
+            //const tokenValue = Cookies.get("token");
+            const tokenValue = localStorage.getItem("token")
 
             // Check if the 'token' cookie exists and log its value
             if (tokenValue) {

@@ -1,11 +1,91 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="f303240a-e3b6-470c-82a7-cb54c8b3f3c3" name="Changes" comment="" />
+    <list default="true" id="f303240a-e3b6-470c-82a7-cb54c8b3f3c3" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MSGS/src/main/java/com/msgs/msgs/dto/ScheduleRequestDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/MSGS/src/main/java/com/msgs/msgs/dto/ScheduleRequestDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MSGS/src/main/java/com/msgs/msgs/dto/StoryRequestDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/MSGS/src/main/java/com/msgs/msgs/dto/StoryRequestDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MSGS/src/main/java/com/msgs/msgs/entity/tripstory/TripStory.java" beforeDir="false" afterPath="$PROJECT_DIR$/MSGS/src/main/java/com/msgs/msgs/entity/tripstory/TripStory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MSGS/src/main/java/com/msgs/msgs/imageupload/ImageUploadController.java" beforeDir="false" afterPath="$PROJECT_DIR$/MSGS/src/main/java/com/msgs/msgs/imageupload/ImageUploadController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MSGS/src/main/java/com/msgs/mypage/service/MyPageServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/MSGS/src/main/java/com/msgs/mypage/service/MyPageServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MSGS/src/main/java/com/msgs/tripschedule/controller/TripScheduleController.java" beforeDir="false" afterPath="$PROJECT_DIR$/MSGS/src/main/java/com/msgs/tripschedule/controller/TripScheduleController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MSGS/src/main/java/com/msgs/tripschedule/service/TripScheduleService.java" beforeDir="false" afterPath="$PROJECT_DIR$/MSGS/src/main/java/com/msgs/tripschedule/service/TripScheduleService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MSGS/src/main/java/com/msgs/tripstory/controller/TripStoryController.java" beforeDir="false" afterPath="$PROJECT_DIR$/MSGS/src/main/java/com/msgs/tripstory/controller/TripStoryController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MSGS/src/main/java/com/msgs/tripstory/repository/TripStoryRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/MSGS/src/main/java/com/msgs/tripstory/repository/TripStoryRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MSGS/src/main/java/com/msgs/tripstory/service/TripStoryService.java" beforeDir="false" afterPath="$PROJECT_DIR$/MSGS/src/main/java/com/msgs/tripstory/service/TripStoryService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MSGS/src/main/resources/application-api.yml" beforeDir="false" afterPath="$PROJECT_DIR$/MSGS/src/main/resources/application-api.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MSGS/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/MSGS/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MSGS/src/main/webapp/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/MSGS/src/main/webapp/src/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MSGS/src/main/webapp/src/components/common/StarClick.js" beforeDir="false" afterPath="$PROJECT_DIR$/MSGS/src/main/webapp/src/components/common/StarClick.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MSGS/src/main/webapp/src/components/common/StickyBanner.js" beforeDir="false" afterPath="$PROJECT_DIR$/MSGS/src/main/webapp/src/components/common/StickyBanner.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MSGS/src/main/webapp/src/components/login/GoogleButton.js" beforeDir="false" afterPath="$PROJECT_DIR$/MSGS/src/main/webapp/src/components/login/GoogleButton.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MSGS/src/main/webapp/src/components/login/KaKaoCallback.js" beforeDir="false" afterPath="$PROJECT_DIR$/MSGS/src/main/webapp/src/components/login/KaKaoCallback.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MSGS/src/main/webapp/src/components/login/NaverLogin_social.js" beforeDir="false" afterPath="$PROJECT_DIR$/MSGS/src/main/webapp/src/components/login/NaverLogin_social.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MSGS/src/main/webapp/src/components/logout/LogoutModal.js" beforeDir="false" afterPath="$PROJECT_DIR$/MSGS/src/main/webapp/src/components/logout/LogoutModal.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MSGS/src/main/webapp/src/components/tripstory/tripstory-create/tripstory-create-upload/UploadPhoto.js" beforeDir="false" afterPath="$PROJECT_DIR$/MSGS/src/main/webapp/src/components/tripstory/tripstory-create/tripstory-create-upload/UploadPhoto.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MSGS/src/main/webapp/src/pages/login/LoginByEail.js" beforeDir="false" afterPath="$PROJECT_DIR$/MSGS/src/main/webapp/src/pages/login/LoginByEail.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MSGS/src/main/webapp/src/pages/tripschedule/TripSchedule.js" beforeDir="false" afterPath="$PROJECT_DIR$/MSGS/src/main/webapp/src/pages/tripschedule/TripSchedule.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MSGS/src/main/webapp/src/pages/tripstory/tripstory-create/TripStoryCreate.js" beforeDir="false" afterPath="$PROJECT_DIR$/MSGS/src/main/webapp/src/pages/tripstory/tripstory-create/TripStoryCreate.js" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ExternalProjectsData">
+    <projectState path="$PROJECT_DIR$/MSGS">
+      <ProjectState />
+    </projectState>
+  </component>
+  <component name="ExternalProjectsManager">
+    <system id="GRADLE">
+      <state>
+        <task path="$PROJECT_DIR$/MSGS">
+          <activation />
+        </task>
+        <projects_view>
+          <tree_state>
+            <expand>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="MSGS" type="f1a62948:ProjectNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="MSGS" type="f1a62948:ProjectNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="MSGS" type="f1a62948:ProjectNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+                <item name="build" type="c8890929:TasksNode$1" />
+              </path>
+            </expand>
+            <select />
+          </tree_state>
+        </projects_view>
+      </state>
+    </system>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="feature/schedule_story" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -21,11 +101,75 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "/Users/mira/Documents/project/intellj/MSGS2",
+    "last_opened_file_path": "D:/study/jpashop",
     "nodejs_package_manager_path": "npm",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
+  <component name="RunManager" selected="Application.MsgsApplication">
+    <configuration name="MsgsApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.msgs.main.MsgsApplication" />
+      <module name="MSGS.main" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.msgs.main.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="MSGS [build]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/MSGS" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="build" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <method v="2" />
+    </configuration>
+    <configuration name="MSGS [clean]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/MSGS" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="clean" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Gradle.MSGS [build]" />
+        <item itemvalue="Gradle.MSGS [clean]" />
+        <item itemvalue="Application.MsgsApplication" />
+      </list>
+    </recent_temporary>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -40,5 +184,28 @@
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="feature/tripstory" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
 </project>

@@ -18,4 +18,5 @@ public class ScheduleRequestDTO {
 
     //updateSchedule()에서 필요
     private String scheduleId;
+    private String userToken;
 }

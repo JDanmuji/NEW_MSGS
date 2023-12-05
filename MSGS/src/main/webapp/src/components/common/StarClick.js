@@ -15,10 +15,7 @@ const StarClick = (props) => {
     const [starColor, setStarColor] = useState(props.starCnt);
 
     const starClickHandler = (starIndex) => {
-        console.log(starColor);
-        console.log(props.starCnt);
-        console.log("-------------------");
-
+      
         setStarColor(starIndex + 1);
         props.setStarCnt(starIndex + 1);
     };
@@ -28,10 +25,12 @@ const StarClick = (props) => {
         alignItems: "center",
         cursor: "pointer",
     };
+
     const filledStyle = {
         height: props.height,
         filter: "invert(62%) sepia(65%) saturate(5531%) hue-rotate(2deg) brightness(103%) contrast(104%)",
     };
+    
     const emptyStyle = {
         height: props.height,
         filter: "invert(88%) sepia(3%) saturate(16%) hue-rotate(8deg) brightness(94%) contrast(90%)",

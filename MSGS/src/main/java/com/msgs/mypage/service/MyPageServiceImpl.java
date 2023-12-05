@@ -159,9 +159,9 @@ public class MyPageServiceImpl implements MyPageService {
 		if (userEntity.isPresent()) {
 			UserEntity resultUserEntity = userEntity.get();
 			UserEntityDTO userEntityDTO = new UserEntityDTO();
-			userEntityDTO.setImgPath(resultUserEntity.getUserImg().getImgPath());
+			//userEntityDTO.setImgPath(resultUserEntity.getUserImg().getImgPath());
 
-			System.out.println("=======getProfile===========" + resultUserEntity.getUserImg().getImgPath());
+			//System.out.println("=======getProfile===========" + resultUserEntity.getUserImg().getImgPath());
 
 			return userEntityDTO;
 		}

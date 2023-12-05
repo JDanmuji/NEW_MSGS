@@ -49,7 +49,8 @@ import WebSocketComponent from "./components/chatbot/WebSocketComponent";
 import ChatModal from "./components/chatbot/ChatModal";
 
 const App = () => {
-    const [isToken, setIsToken] = useState(Cookies.get("token"));
+    //const [isToken, setIsToken] = useState(Cookies.get("token"));
+    const [isToken, setIsToken] = useState(localStorage.getItem("token"));
     console.log(isToken);
     const loginHandler = (token) => {
         setIsToken(token);

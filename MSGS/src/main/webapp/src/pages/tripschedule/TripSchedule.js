@@ -242,6 +242,7 @@ export default function TripSchedule() {
 			planList: planList,
 			dateList: dateList,
 			cityName: selectedCity.areaTitle,
+			userToken: localStorage.getItem("token")
 		}
 
 		axios
