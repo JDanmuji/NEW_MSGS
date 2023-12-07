@@ -36,7 +36,6 @@ public class TripStoryController {
 
 
 
-
 	/* 모든 여행 이야기를 List에 담아서 보냄 */
 	@GetMapping("/")
 	public List<TripStoryMainDTO> getStoryList(){

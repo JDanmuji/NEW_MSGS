@@ -20,6 +20,7 @@ import java.util.Map;
 
 
 import com.msgs.tripstory.repository.TripStoryRepository;
+import com.msgs.user.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -35,7 +36,6 @@ import com.msgs.tripstory.dao.TripStoryImgDAO;
 import com.msgs.msgs.entity.user.UserEntity;
 import com.msgs.msgs.entity.user.UserImg;
 import com.msgs.tripstory.dao.StoryCommentDAO;
-import com.msgs.user.dao.UserDAO;
 
 import java.util.ArrayList;
 
@@ -48,7 +48,8 @@ import org.springframework.transaction.annotation.Transactional;
 @RequiredArgsConstructor
 public class TripStoryService {
 
-    private final UserDAO userDAO;
+
+	private final UserRepository userRepo;
 
 	@Value("${jwt.secret}")
 	private String secretKey;
@@ -215,7 +216,7 @@ public class TripStoryService {
 		}
 
 		// userId 이용한 UserEntity 엔티티 반환
-		Optional<UserEntity> userEntity = userDAO.findById(storyCommentDTO.getUserId());
+		Optional<UserEntity> userEntity = userRepo.findById(storyCommentDTO.getUserId());
 		if(userEntity.isPresent()) {
 			UserEntity resultUserEntity = userEntity.get();
 			storyComment.setUserStoryCmnt(resultUserEntity);
@@ -279,12 +280,13 @@ public class TripStoryService {
 
 		try {
 			JwtTokenProvider token = new JwtTokenProvider(secretKey);
-			System.out.println(token.getAuthentication(userToken));
 
-			//Optional<UserEntity> userEntity = userDAO.findById(token.getAuthentication(userToken).toString());
+			String userId = token.getAuthentication(userToken).getName();
 
-			Optional<UserEntity> userEntity = userDAO.findById("yhg9801");
-			UserEntity resultUserEntity = userEntity.orElseThrow();
+			Optional<UserEntity> userEntity = userRepo.findById(userId);
+			///Optional<UserEntity> userEntity = userRepo.findById("yhg9801");
+
+			UserEntity resultUserEntity = userEntity.get();
 
 			Optional<TripSchedule> tripSchedule = Optional.ofNullable(scheduleRepo.findById(Integer.parseInt(scheduleId)));
 			TripSchedule resultTripSchedule = tripSchedule.orElseThrow();
@@ -316,6 +318,7 @@ public class TripStoryService {
 
 	private TripStory createTripStory(UserEntity userEntity, TripSchedule tripSchedule,
 									  Map<String, Object> storyData, List<String> dateList) throws Exception {
+
 		TripStory tripStory = new TripStory();
 		tripStory.setUserTripStory(userEntity);
 		tripStory.setTripSchedule(tripSchedule);
@@ -323,8 +326,6 @@ public class TripStoryService {
 		tripStory.setComment(storyData.get("comment").toString());
 		tripStory.setRating(Integer.parseInt(storyData.get("rating").toString()));
 		tripStory.setCityName(storyData.get("cityName").toString());
-
-
 
 		List<StoryImg> storyImgList = imageUpload.uploadFilesSample2((List<Object>) storyData.get("img"), "/story");
 

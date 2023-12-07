@@ -5,7 +5,29 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f303240a-e3b6-470c-82a7-cb54c8b3f3c3" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/MSGS/src/main/java/com/msgs/user/repository/UserRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MSGS/src/main/java/com/msgs/msgs/dto/UserLoginRequestDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/MSGS/src/main/java/com/msgs/msgs/dto/UserLoginRequestDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MSGS/src/main/java/com/msgs/msgs/entity/user/UserEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/MSGS/src/main/java/com/msgs/msgs/entity/user/UserEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MSGS/src/main/java/com/msgs/msgs/jwt/CustomUserDetailsService.java" beforeDir="false" afterPath="$PROJECT_DIR$/MSGS/src/main/java/com/msgs/msgs/jwt/CustomUserDetailsService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MSGS/src/main/java/com/msgs/msgs/jwt/JwtTokenProvider.java" beforeDir="false" afterPath="$PROJECT_DIR$/MSGS/src/main/java/com/msgs/msgs/jwt/JwtTokenProvider.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MSGS/src/main/java/com/msgs/msgs/jwt/controller/UserController2.java" beforeDir="false" afterPath="$PROJECT_DIR$/MSGS/src/main/java/com/msgs/msgs/jwt/controller/UserController2.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MSGS/src/main/java/com/msgs/msgs/jwt/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/MSGS/src/main/java/com/msgs/msgs/jwt/service/UserJwtService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MSGS/src/main/java/com/msgs/mypage/service/MyPageServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/MSGS/src/main/java/com/msgs/mypage/service/MyPageServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MSGS/src/main/java/com/msgs/tripplace/service/TripPlaceServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/MSGS/src/main/java/com/msgs/tripplace/service/TripPlaceServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MSGS/src/main/java/com/msgs/tripschedule/service/TripScheduleService.java" beforeDir="false" afterPath="$PROJECT_DIR$/MSGS/src/main/java/com/msgs/tripschedule/service/TripScheduleService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MSGS/src/main/java/com/msgs/tripstory/controller/TripStoryController.java" beforeDir="false" afterPath="$PROJECT_DIR$/MSGS/src/main/java/com/msgs/tripstory/controller/TripStoryController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/MSGS/src/main/java/com/msgs/tripstory/service/TripStoryService.java" beforeDir="false" afterPath="$PROJECT_DIR$/MSGS/src/main/java/com/msgs/tripstory/service/TripStoryService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MSGS/src/main/java/com/msgs/user/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/MSGS/src/main/java/com/msgs/user/controller/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MSGS/src/main/java/com/msgs/user/dao/UserDAO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/MSGS/src/main/java/com/msgs/user/dao/UserRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/MSGS/src/main/java/com/msgs/user/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/MSGS/src/main/java/com/msgs/user/service/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MSGS/src/main/java/com/msgs/user/service/UserServiceImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/MSGS/src/main/webapp/src/components/login/GoogleButton.js" beforeDir="false" afterPath="$PROJECT_DIR$/MSGS/src/main/webapp/src/components/login/GoogleButton.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MSGS/src/main/webapp/src/components/login/KaKaoCallback.js" beforeDir="false" afterPath="$PROJECT_DIR$/MSGS/src/main/webapp/src/components/login/KaKaoCallback.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MSGS/src/main/webapp/src/components/login/NaverLogin_social.js" beforeDir="false" afterPath="$PROJECT_DIR$/MSGS/src/main/webapp/src/components/login/NaverLogin_social.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MSGS/src/main/webapp/src/pages/login/LoginByEail.js" beforeDir="false" afterPath="$PROJECT_DIR$/MSGS/src/main/webapp/src/pages/login/LoginByEail.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MSGS/src/main/webapp/src/pages/signup/Signup1.js" beforeDir="false" afterPath="$PROJECT_DIR$/MSGS/src/main/webapp/src/pages/signup/Signup1.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -72,16 +94,16 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "D:/study/jpashop",
-    "nodejs_package_manager_path": "npm",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/study/jpashop&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager" selected="Application.MsgsApplication">
     <configuration name="MsgsApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.msgs.main.MsgsApplication" />
@@ -140,9 +162,9 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.MsgsApplication" />
         <item itemvalue="Gradle.MSGS [build]" />
         <item itemvalue="Gradle.MSGS [clean]" />
-        <item itemvalue="Application.MsgsApplication" />
       </list>
     </recent_temporary>
   </component>

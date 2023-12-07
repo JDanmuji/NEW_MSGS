@@ -34,6 +34,7 @@ const NaverLogin_social = ({ loginHandler }) => {
                     body: JSON.stringify({
                         email: naverEmail,
                         password: password,
+                        loginType : "N"
                     }),
                 });
 

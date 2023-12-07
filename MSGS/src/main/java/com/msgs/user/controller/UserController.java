@@ -4,8 +4,9 @@ package com.msgs.user.controller;
 import com.msgs.msgs.dto.UserEntityDTO;
 import com.msgs.msgs.entity.user.UserEntity;
 import com.msgs.user.service.SmsService;
-import com.msgs.user.service.UserService;
 
+import com.msgs.user.service.UserService;
+import lombok.RequiredArgsConstructor;
 import org.json.simple.parser.ParseException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -15,16 +16,15 @@ import java.util.Random;
 
 @RestController
 @RequestMapping("user")
+@RequiredArgsConstructor
 public class UserController {
 
 
-    @Autowired
-    private UserService userService;
+    private final UserService userService;
     @Autowired
     private SmsService smsService;
 
 
-    
     @PostMapping("/signup/smscheck")
 	public String smsCheck(@RequestBody String phone) throws ParseException{
 

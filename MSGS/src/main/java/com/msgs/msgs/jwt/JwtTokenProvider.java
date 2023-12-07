@@ -35,6 +35,7 @@ public class JwtTokenProvider {
 //        String authorities = authentication.getAuthorities().stream()
 //                .map(GrantedAuthority::getAuthority)
 //                .collect(Collectors.joining(","));
+
         String authorities = "USER";
         String[] userInfo = authentication.getName().split(",");
 
@@ -43,7 +44,7 @@ public class JwtTokenProvider {
         Date accessTokenExpiresIn = new Date(now + 14400000);
         String accessToken = Jwts.builder()
                 .setId(userInfo[0])
-                .setSubject(userInfo[1])
+                //.setSubject(userInfo[1])
                 .claim("auth", authorities)
                 .setExpiration(accessTokenExpiresIn)
                 .signWith(key, SignatureAlgorithm.HS256)
@@ -79,7 +80,7 @@ public class JwtTokenProvider {
                         .collect(Collectors.toList());
 
         // UserDetails 객체를 만들어서 Authentication 리턴
-        UserDetails principal = new User(claims.getSubject(), "", authorities);
+        UserDetails principal = new User(claims.getId(), "", authorities);
         return new UsernamePasswordAuthenticationToken(principal, "", authorities);
     }
 
@@ -113,12 +114,12 @@ public class JwtTokenProvider {
 
         // 클레임에서 권한 정보 가져오기
         String userId = claims.get("jti").toString();
-        String userEmail = claims.get("sub").toString();
+       // String userEmail = claims.get("sub").toString();
 
         // user 정보 Json 에 담기
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("id", userId);
-        jsonObject.put("email", userEmail);
+       // jsonObject.put("email", userEmail);
 
 
         return jsonObject;

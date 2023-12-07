@@ -3,7 +3,7 @@ package com.msgs.msgs.jwt.controller;
 import com.msgs.msgs.dto.TokenInfo;
 import com.msgs.msgs.dto.UserLoginRequestDto;
 import com.msgs.msgs.jwt.JwtTokenProvider;
-import com.msgs.msgs.jwt.service.UserService;
+import com.msgs.msgs.jwt.service.UserJwtService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.json.JSONObject;
@@ -18,20 +18,16 @@ import java.util.Map;
 @RequestMapping("/users")
 public class UserController2 {
 
-    private final UserService userService;
+    private final UserJwtService userJwtService;
     private JwtTokenProvider jwtTokenProvider;
 
     @PostMapping("/login")
     public TokenInfo login(@RequestBody UserLoginRequestDto userLoginRequestDto) {
 
-//        String userId = userLoginRequestDto.getId();
         String userEmail = userLoginRequestDto.getEmail();
         String password = userLoginRequestDto.getPassword();
-        System.out.println(userEmail);
-        System.out.println(password);
-        
-        TokenInfo tokenInfo = userService.login(userEmail, password);
-        System.out.println("jjjjjjjjjjjjjjjjjjjj"+tokenInfo);
+
+        TokenInfo tokenInfo = userJwtService.login(userEmail, password);
 
         return tokenInfo;
     }
@@ -40,7 +36,7 @@ public class UserController2 {
     
     @PostMapping("/info")
     public ResponseEntity<?> getUserInfo(@RequestParam String accessToken) {
-        JSONObject userInfo = userService.getUserInfo(accessToken);
+        JSONObject userInfo = userJwtService.getUserInfo(accessToken);
         return ResponseEntity.ok().body(userInfo.toString());
     }
 

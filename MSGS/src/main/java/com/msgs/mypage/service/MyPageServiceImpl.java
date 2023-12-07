@@ -7,6 +7,7 @@ import java.util.List;
 
 import com.msgs.msgs.dto.MyPageReviewDTO;
 import com.msgs.msgs.dto.MyPageScheduleDTO;
+import com.msgs.user.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,7 +21,6 @@ import com.msgs.msgs.entity.user.UserEntity;
 import com.msgs.msgs.entity.user.UserImg;
 import com.msgs.mypage.dto.MyPageUserDTO;
 import com.msgs.tripstory.dao.TripStoryDAO;
-import com.msgs.user.dao.UserDAO;
 
 @Service
 public class MyPageServiceImpl implements MyPageService {
@@ -29,7 +29,7 @@ public class MyPageServiceImpl implements MyPageService {
 	private MyPageDAO myPageDAO;
 
 	@Autowired
-	private UserDAO userDAO;
+	private UserRepository userRepo;
 
 	@Autowired
 	private TripStoryDAO tripStoryDAO;
@@ -154,7 +154,7 @@ public class MyPageServiceImpl implements MyPageService {
 	// ========== 유저 이미지 불러오기 ==========
 	@Override
 	public UserEntityDTO getProfile(String id) {
-		Optional<UserEntity> userEntity = userDAO.findById(id);
+		Optional<UserEntity> userEntity = userRepo.findById(id);
 
 		if (userEntity.isPresent()) {
 			UserEntity resultUserEntity = userEntity.get();

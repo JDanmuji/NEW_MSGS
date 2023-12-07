@@ -25,6 +25,7 @@ const GoogleButton = ({ loginHandler }) => {
                 body: JSON.stringify({
                     email: userObject.email,
                     password: "123",
+                    loginType : "G"
                 }),
             });
 

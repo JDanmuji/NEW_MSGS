@@ -132,7 +132,7 @@ const LoginByEail = ({ loginHandler }) => {
                 headers: {
                     "Content-Type": "application/json",
                 },
-                body: JSON.stringify({ email: email, password: password }),
+                body: JSON.stringify({ email: email, password: password,  loginType : "M" }),
             });
 
             const data = await response.json();

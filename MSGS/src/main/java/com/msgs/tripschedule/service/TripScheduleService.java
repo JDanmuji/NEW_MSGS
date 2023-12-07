@@ -8,7 +8,6 @@ import com.msgs.msgs.entity.tripschedule.TripSchedule;
 import com.msgs.msgs.entity.user.UserEntity;
 import com.msgs.msgs.jwt.JwtTokenProvider;
 import com.msgs.tripschedule.repository.TripscheduleRepository;
-import com.msgs.user.dao.UserDAO;
 import java.time.LocalDateTime;
 import java.util.Arrays;
 import com.google.gson.Gson;
@@ -18,6 +17,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+
+import com.msgs.user.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -25,6 +26,8 @@ import org.json.XML;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.reactive.function.client.WebClient;
@@ -46,7 +49,8 @@ public class TripScheduleService {
 
     Gson gson = new Gson();
 
-    private final UserDAO userDAO;
+    private final UserRepository userRepo;
+
     private final TripscheduleRepository scheduleRepo;
 
 
@@ -212,11 +216,12 @@ public class TripScheduleService {
         try{
             /*TRIP_SCHEDULE*/
             JwtTokenProvider token = new JwtTokenProvider(secretKey);
-            System.out.println("데이터 저장됨?");
-            System.out.println(token.getAuthentication(userToken));
 
-            Optional<UserEntity> userEntity = userDAO.findById(token.getAuthentication(userToken).toString());
+            String userId = token.getAuthentication(userToken).getName();
+
+            Optional<UserEntity> userEntity = userRepo.findById(userId);
             //Optional<UserEntity> userEntity = userDAO.findById("yhg9801"); // id 이용해서 UserEntity 엔티티 가져오기 */
+
             UserEntity resultUserEntity = userEntity.get();
 
             //1. 여행일정 ID는 seq 값이 자동으로 들어감
@@ -358,7 +363,7 @@ public class TripScheduleService {
         try{
 
             //JwtTokenProvider token = new JwtTokenProvider(userToken);
-            Optional<UserEntity> userEntity = userDAO.findById("yhg9801"); // id 이용해서 UserEntity 엔티티 가져오기 */
+            Optional<UserEntity> userEntity = userRepo.findById("yhg9801"); // id 이용해서 UserEntity 엔티티 가져오기 */
             UserEntity resultUserEntity = userEntity.get();
 
             /*TRIP_SCHEDULE 업데이트 -> mod_date(수정 시간) 컬럼 추가하기 위함*/

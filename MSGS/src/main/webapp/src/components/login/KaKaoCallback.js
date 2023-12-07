@@ -25,6 +25,7 @@ const KaKaoCallback = (props) => {
                 body: JSON.stringify({
                     email: test.data.kakao_account.email,
                     password: password,
+                    loginType : "K"
                 }),
             });
 
