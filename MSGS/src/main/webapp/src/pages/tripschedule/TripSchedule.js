@@ -31,10 +31,8 @@ export default function TripSchedule() {
 	const [modalPlaceList, setModalPlaceList] = useState([]) //[{}, {}, {}]
 	/* state 끝*/
 
-
 	//dateList 계산
 	const getDatesStartToEnd = (startDate, endDate) => {
-		console.log(startDate + '~' + endDate)
 		let result = []
 		let curDate = new Date(startDate)
 
@@ -236,7 +234,7 @@ export default function TripSchedule() {
 	}, [selectedCity])
 	// }, []);
 
-	//저장하기 버튼 눌렀을 때 백으로 일정 Data 보냄.
+	// 오른쪽 위의 [저장하기] 버튼 눌렀을 때 백으로 일정 Data 보냄.
 	const saveTripSchedule = () => {
 		const requestBody = {
 			planList: planList,
@@ -248,12 +246,43 @@ export default function TripSchedule() {
 			.post('/tripschedule/info', requestBody)
 			.then(function (response) {
 				console.log('saveTripSchedule  성공')
+				alert('일정 저장이 완료되었습니다.')
 			})
 			.catch(function (error) {
 				console.log('saveTripSchedule  실패', error)
+				alert('일정 저장이 실패하였습니다.')
 			})
 	}
 
+	/*완료 버튼 눌렀을 때 -> 블록 추가 모드로 전환*/
+	const toggleEditMode = () => {
+		setEditMode((prevMode) => !prevMode)
+	}
+
+	/* Sidebar에 있는 (편집)완료 버튼 눌렀을 때 동작 */
+	const completeModify = () => {
+		// 1-변경된 순서에 맞게 planList의 order와 placeOrder값을 재할당
+		planListHandler((prevObj) => {
+			let updatedObj = { ...prevObj }
+
+			Object.keys(updatedObj).map((orderDay) => {
+				//이 안에서 item이 orderDay역할함
+				let prevPlaceOrder = 0
+
+				if (updatedObj[orderDay].length > 0) {
+					//해당 Day에 planBlock(일정)이 1개 이상 있는 경우
+					updatedObj[orderDay] = updatedObj[orderDay]?.map((item, index) => {
+						prevPlaceOrder = item.placeOrder ? prevPlaceOrder + 1 : prevPlaceOrder
+						return { ...item, order: index + 1, placeOrder: item.placeOrder ? prevPlaceOrder : null }
+					})
+				}
+			})
+
+			return updatedObj
+		})
+		// 2-블록 추가 모드로 전환
+		toggleEditMode()
+	}
 
 	return (
 		<div className={style['container']}>
@@ -261,63 +290,57 @@ export default function TripSchedule() {
 			<button className={style['save-button']} onClick={saveTripSchedule}>
 				저장하기
 			</button>
-			{/* <button className={style["save-button"]} onClick={saveTripSchedule}>
-        저장하기
-      </button> */}
-            {/* 사이드바 */}
-            <div className={style["sidebar"]}>
-                <div className={style["sidebar-title"]}>
-                    <p className={style["trip-title"]}>
-                        {ReactHtmlParser(selectedCity.areaTitle)} 여행
-                    </p>
-                    <p className={style["travel-period"]}>
-                        {dateList[0] + "~" + dateList[dateList.length - 1]}
-                    </p>
-                </div>
-                <Scrollbars
-                    style={{ height: "100%", width: "100%" }}
-                    thumbSize={120}
-                    autoHide
-                    autoHideTimeout={1000}
-                    autoHideDuration={1000}
-                    renderTrackHorizontal={(props) => (
-                        <div {...props} className={style["track-horizontal"]} />
-                    )}
-                    renderThumbHorizontal={(props) => (
-                        <div {...props} className={style["thumb-horizontal"]} />
-                    )}
-                >
-                    {/* Day1, 2, 3... 블록 */}
-                    <div className={style["dayplan-wrapper"]}>
-                        {editMode
-                            ? //편집모드인 경우
-                              dateList?.map((item, index) => (
-                                  <DayPlanEditMode
-                                      key={index + 1}
-                                      orderDay={index + 1}
-                                      date={item}
-                                      planList={planList}
-                                      planListHandler={planListHandler}
-                                      setEditMode={setEditMode}
-                                  />
-                              ))
-                            : //편집모드가 아닌 경우
-                              dateList?.map((item, index) => (
-                                  <DayPlan
-                                      key={index + 1}
-                                      orderDay={index + 1}
-                                      date={item}
-                                      planList={planList}
-                                      planListHandler={planListHandler}
-                                      setEditMode={setEditMode}
-                                      selectedCity={selectedCity}
-                                      modalDormList={modalDormList}
-                                      modalPlaceList={modalPlaceList}
-                                  />
-                              ))}
-                    </div>
-                </Scrollbars>
-            </div>
+			{/* 사이드바 */}
+			<div className={style['sidebar']}>
+				<div className={style['sidebar-title']}>
+					<p className={style[ 'trip-title' ]}> {ReactHtmlParser(selectedCity.areaTitle)} 여행</p>
+					<p className={style['travel-period']}>{dateList[0] + '~' + dateList[dateList.length - 1]}</p>
+				</div>
+				<Scrollbars
+					style={{ height: '100%', width: '100%' }}
+					thumbSize={120}
+					autoHide
+					autoHideTimeout={1000}
+					autoHideDuration={1000}
+					renderTrackHorizontal={(props) => <div {...props} className={style['track-horizontal']} />}
+					renderThumbHorizontal={(props) => <div {...props} className={style['thumb-horizontal']} />}>
+					{/* Day1, 2, 3... 블록 */}
+					<div className={style['dayplan-wrapper']}>
+						{editMode === true && ( //편집모드인 경우에
+							//dayplan-wrapper 안에  완료버튼 추가함.
+							<div className={style['edit-button-wrapper']} onClick={completeModify}>
+								<img className={style['edit-button']} src={process.env.PUBLIC_URL + '/images/icon_edit_pencil.png'} alt="icon_edit_pencil"></img>
+								<span className={style['edit-button-text']}>완료</span>
+							</div>
+						)}
+						{editMode
+							? dateList?.map((item, index) => (
+									<DayPlanEditMode
+										key={index + 1}
+										orderDay={index + 1}
+										date={item}
+										planList={planList}
+										planListHandler={planListHandler}
+										setEditMode={setEditMode}
+									/>
+							  ))
+							: //편집모드가 아닌 경우
+							  dateList?.map((item, index) => (
+									<DayPlan
+										key={index + 1}
+										orderDay={index + 1}
+										date={item}
+										planList={planList}
+										planListHandler={planListHandler}
+										setEditMode={setEditMode}
+										selectedCity={selectedCity}
+										modalDormList={modalDormList}
+										modalPlaceList={modalPlaceList}
+									/>
+							  ))}
+					</div>
+				</Scrollbars>
+			</div>
 
             {/* 구글맵 */}
             {/* //window가 로드 된 시점에서 google map을 렌더링함. */}
