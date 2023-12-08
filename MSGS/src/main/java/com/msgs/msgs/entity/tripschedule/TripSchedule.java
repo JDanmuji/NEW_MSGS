@@ -46,7 +46,7 @@ public class TripSchedule {
     @OneToOne(mappedBy = "tripSchedule", fetch = LAZY)
     private TripStory tripStory;
 
-    @OneToMany(mappedBy = "tripSchedule", fetch = LAZY)
+    @OneToMany(mappedBy = "tripSchedule", fetch = LAZY, cascade = CascadeType.REMOVE)
     private  List<TripDailySchedule> tripDailySchedules = new ArrayList<>();
 
 
