@@ -16,7 +16,6 @@ export default function EditTripSchedule() {
 	//파라미터에서 데이터 가져옴
 	const { scheduleId } = useParams()
 	const navigate = useNavigate()
-	console.log('=====================================   scheduleId = ' + scheduleId)
 
 	/* state 시작 */
 	const [winReady, setWinReady] = useState(false) //window가 로드 된 시점에서 <Map/> 랜더링 하기 위함
@@ -111,43 +110,58 @@ export default function EditTripSchedule() {
 					console.log('placeInfo 실패', error)
 				})
 	}, [selectedCity])
+	
 
-	/*
-	useEffect(() => {
-		console.log(dateList)
 
-		// dateList에 따라 planList = {1: [{}, {}, {}, {}], 2: [], 3: []} 식으로 초기화 한다.
-		let initObj = {}
-		dateList?.map((_, index) => {
-			initObj[index + 1] = []
-		})
-
-		// if (Object.keys(planList).length == 0) {
-			
-			// planListHandler(initObj)                           
-		// }
-	}, [dateList])*/
-
-	//[편집 완료] 버튼 눌렀을 때 백으로 일정 Data 보냄.
+	// 오른쪽 위의 [편집 완료] 버튼 눌렀을 때 백으로 일정 Data 보냄.
 	const updateTripSchedule = () => {
 		const requestBody = {
 			planList: planList,
-			dateList: dateList,
+			// dateList: dateList,
 			// cityName: selectedCity.areaTitle,
-			scheduleId: scheduleId,
 		}
 
 		axios
-			.post('/tripschedule/infoUpdate', requestBody)
+			.put(`/tripschedule/info/${scheduleId}`, requestBody)
 			.then(function (response) {
-				console.log('updateTripSchedule  성공')
+				console.log("updateTripSchedule  성공")
+				alert("일정 편집이 완료되었습니다.")
 			})
 			.catch(function (error) {
-				console.log('updateTripSchedule  실패', error)
+				console.log("updateTripSchedule  실패", error)
+				alert("일정 편집이 실패하였습니다.")
 			})
 
-		alert('일정 편집이 완료되었습니다.')
 		navigate('/mypage')
+	}
+
+	/*완료 버튼 눌렀을 때 -> 블록 추가 모드로 전환*/
+	const toggleEditMode = () => {
+		setEditMode((prevMode) => !prevMode)
+	}
+
+	/* Sidebar에 있는 (편집)완료 버튼 눌렀을 때 동작 */
+	const completeModify = () => {
+		// 1-변경된 순서에 맞게 planList의 order와 placeOrder값을 재할당
+		planListHandler((prevObj) => {
+			let updatedObj = { ...prevObj }
+
+			Object.keys(updatedObj).map((orderDay) => {
+				// 이 안에서 item이 orderDay역할함
+				let prevPlaceOrder = 0
+				if (updatedObj[orderDay].length > 0) {
+					//해당 Day에 planBlock(일정)이 1개 이상 있는 경우
+					updatedObj[orderDay] = updatedObj[orderDay]?.map((item, index) => {
+						prevPlaceOrder = item.placeOrder ? prevPlaceOrder + 1 : prevPlaceOrder
+						return { ...item, order: index + 1, placeOrder: item.placeOrder ? prevPlaceOrder : null }
+					})
+				}
+			})
+
+			return updatedObj
+		})
+		// 2-블록 추가 모드로 전환
+		toggleEditMode()
 	}
 
 	return (
@@ -172,9 +186,14 @@ export default function EditTripSchedule() {
 					renderThumbHorizontal={(props) => <div {...props} className={style['thumb-horizontal']} />}>
 					{/* Day1, 2, 3... 블록 */}
 					<div className={style['dayplan-wrapper']}>
-						{editMode
-							? //편집모드인 경우
-							  dateList?.map((item, index) => (
+						{editMode === true && ( //편집모드인 경우에 //dayplan-wrapper 안에  완료버튼 추가함.
+							<div className={style['edit-button-wrapper']} onClick={completeModify}>
+								<img className={style['edit-button']} src={process.env.PUBLIC_URL + '/images/icon_edit_pencil.png'} alt='icon_edit_pencil'></img>
+								<span className={style['edit-button-text']}>완료</span>
+							</div>
+						)}
+						{editMode //편집모드인 경우
+							? dateList?.map((item, index) => (
 									<DayPlanEditMode
 										key={index + 1}
 										orderDay={index + 1}

@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -56,6 +57,7 @@ public class TripScheduleController {
         String cityName = scheduleRequest.getCityName();
         String userToken = scheduleRequest.getUserToken();
 
+
         System.out.println("dateList, planList, cityName 받았다!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
         System.out.println(dateList);
         System.out.println(planList);
@@ -63,6 +65,7 @@ public class TripScheduleController {
         System.out.println(userToken);
 
         Boolean isSuccess = tripScheduleService.saveSchedule(dateList, planList, cityName, userToken);
+
 
 
         if(isSuccess){
@@ -83,21 +86,10 @@ public class TripScheduleController {
 
 
     //프론트에서 받은 여행일정 데이터를 DB에 Update함
-    @PostMapping("/infoUpdate")
-    public ResponseEntity<Void> updateSchedule(@RequestBody ScheduleRequestDTO scheduleRequest){
-
-        System.out.println("update Schedule Controller 실행==================================================");
-        List<String> dateList = scheduleRequest.getDateList();
+    @PutMapping("/info/{scheduleId}")
+    public ResponseEntity<Void> updateSchedule(@PathVariable int scheduleId, @RequestBody ScheduleRequestDTO scheduleRequest){
         Map<Integer, List<PlanBlockDTO>> planList = scheduleRequest.getPlanList();
-        int scheduleId = Integer.parseInt(scheduleRequest.getScheduleId());
-
-        System.out.println("dateList, planList, scheduleId 받았다!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-        System.out.println(dateList);
-        System.out.println(planList);
-        System.out.println(scheduleId);
-
-        Boolean isSuccess = tripScheduleService.updateSchedule(dateList, planList, scheduleId);
-
+        Boolean isSuccess = tripScheduleService.updateSchedule(scheduleId, planList);
 
         if(isSuccess){
             return ResponseEntity.status(HttpStatus.OK).build();
@@ -105,6 +97,7 @@ public class TripScheduleController {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
         }
     }
+
 
     //해당 여행일정을 DB에서 삭제함
     @DeleteMapping("/{id}")

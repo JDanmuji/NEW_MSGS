@@ -11,10 +11,6 @@ export default function DayPlanEditMode({ orderDay, date, planList, planListHand
 		setWinReady(true)
 	}, [])
 
-	/*완료 버튼 눌렀을 때 -> 블록 추가 모드로 전환*/
-	const toggleEditMode = () => {
-		setEditMode((prevMode) => !prevMode)
-	}
 
 	/*거리순 재정렬 버튼 눌렀을 때*/
 	const rearrangeBlockByDistance = () => {}
@@ -55,28 +51,6 @@ export default function DayPlanEditMode({ orderDay, date, planList, planListHand
 		})
 	}
 
-	//완료 버튼 눌렀을 때 동작
-	const completeModify = () => {
-		// 1-변경된 순서에 맞게 planList의 order와 placeOrder값을 재할당
-		planListHandler((prevObj) => {
-			let updatedObj = { ...prevObj }
-
-			let prevPlaceOrder = 0
-			if (Object.keys(updatedObj[ orderDay ]).length > 0) {
-
-				updatedObj[orderDay] = updatedObj[orderDay]?.map((item, index) => {
-					prevPlaceOrder = item.placeOrder ? prevPlaceOrder + 1 : prevPlaceOrder
-					return { ...item, order: index + 1, placeOrder: item.placeOrder ? prevPlaceOrder : null }
-				})
-				
-			}
-			return updatedObj	
-		})
-
-		// 2-블록 추가 모드로 전환
-		toggleEditMode()
-	}
-
 	return (
 		<div className={style['dayplan-edit-mode']}>
 			<div className={style['day-title-wrapper']}>
@@ -84,12 +58,6 @@ export default function DayPlanEditMode({ orderDay, date, planList, planListHand
 					<span className={style['text-first']}>DAY {orderDay}</span>
 					<span className={style['text-second']}>{date}</span>
 				</p>
-				{orderDay === 1 && ( //DAY1 블록일 경우 완료버튼 추가함.
-					<div className={style['edit-button-wrapper']} onClick={completeModify}>
-						<img className={style['edit-button']} src={process.env.PUBLIC_URL + '/images/icon_edit_pencil.png'} alt='icon_edit_pencil'></img>
-						<span className={style['edit-button-text']}>완료</span>
-					</div>
-				)}
 			</div>
 
 			{winReady ? ( //window가 로드 된 시점에서 렌더링함.
