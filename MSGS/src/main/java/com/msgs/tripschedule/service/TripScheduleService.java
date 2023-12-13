@@ -1,7 +1,6 @@
 package com.msgs.tripschedule.service;
 
 import com.msgs.msgs.dto.PlanBlockDTO;
-import com.msgs.msgs.entity.tripschedule.DetailScheduleID;
 import com.msgs.msgs.entity.tripschedule.TripDailySchedule;
 import com.msgs.msgs.entity.tripschedule.TripDetailSchedule;
 import com.msgs.msgs.entity.tripschedule.TripSchedule;
@@ -206,29 +205,23 @@ public class TripScheduleService {
     public Boolean saveSchedule(List<String> dateList, Map<Integer, List<PlanBlockDTO>> planList, String cityName){
 
         try{
-            /*TRIP_SCHEDULE*/
-            Optional<UserEntity> userEntity = userDAO.findById("yhg9801"); // id 이용해서 UserEntity 엔티티 가져오기 */
+            Optional<UserEntity> userEntity = userDAO.findById("yhg9801"); // id 이용해서 User엔티티 가져오기 */
             UserEntity resultUserEntity = userEntity.get();
 
-            //1. 여행일정 ID는 seq 값이 자동으로 들어감
+            /*TRIP_SCHEDULE*/
             TripSchedule tripSchedule = new TripSchedule();
             tripSchedule.setUserEntity(resultUserEntity);
             tripSchedule.setCityName(cityName);
             tripSchedule.setDateList( String.join(",", dateList) );
-            //3. 등록일자로 현재 date 저장해야 함.
 
-            System.out.println(resultUserEntity.getId());
             try{
-                /*TRIP_SCHEDULE 에 저장*/
-                scheduleRepo.saveSchedule(tripSchedule); //DB에 저장 -> id 얻어오기 위함
+                scheduleRepo.saveSchedule(tripSchedule); //TRIP_SCHEDULE을 DB에 저장 -> id 얻어오기 위함
             }catch(Exception e){
                 System.out.println("scheduleDAO.saveAndFlush(tripSchedule) 에서 에러남=================================");
             }
 
-
-            /*TRIP_DAILY_SCHEDULE*/
             for (Map.Entry<Integer, List<PlanBlockDTO>> entry : planList.entrySet()) {
-                /*TRIP_DAILY_SCHEDULE 에 저장*/
+                /*TRIP_DAILY_SCHEDULE에 저장*/
                 TripDailySchedule tripDaily = new TripDailySchedule();
                 tripDaily.setTripSchedule(tripSchedule);
                 scheduleRepo.saveDailySchedule(tripDaily); // DB에 저장
@@ -238,27 +231,26 @@ public class TripScheduleService {
                 List<PlanBlockDTO> planBlocks = entry.getValue(); // PlanBlockDTO 목록
 
 
-                    /*TRIP_DETAIL_SCHEDULE 에 저장*/
-                    // 각 PlanBlockDTO를  TripDetailSchedule Entity로 변환하여 저장
-                    for(PlanBlockDTO planBlockDTO : planBlocks) {  //planBlocks = List<PlanBlockDTO>>
+                /*TRIP_DETAIL_SCHEDULE에 저장*/
+                for(PlanBlockDTO planBlockDTO : planBlocks) {
 
-                        // PlanBlockDTO의 필드 값을 전달하여 TripDetailSchedule Entity를 생성
-                        TripDetailSchedule tripDetail = new TripDetailSchedule();
-                        tripDetail.setTripDailySchedule(tripDaily);
-                        tripDetail.setOrderDay(day);
-                        tripDetail.setOrder(planBlockDTO.getOrder());
-                        tripDetail.setPlaceOrder(planBlockDTO.getPlaceOrder());
-                        tripDetail.setTitle(planBlockDTO.getTitle());
-                        tripDetail.setType(planBlockDTO.getType());
-                        tripDetail.setLocation(planBlockDTO.getLocation());
-                        tripDetail.setMapx(planBlockDTO.getMapx());
-                        tripDetail.setMapy(planBlockDTO.getMapy());
-                        tripDetail.setContentid(planBlockDTO.getContentid());
-                        tripDetail.setFirstimage2(planBlockDTO.getFirstimage2());
+                    TripDetailSchedule tripDetail = new TripDetailSchedule();
+                    tripDetail.setTripDailySchedule(tripDaily);
+                    tripDetail.setOrderDay(day);
+                    tripDetail.setOrder(planBlockDTO.getOrder());
+                    tripDetail.setPlaceOrder(planBlockDTO.getPlaceOrder());
+                    tripDetail.setTitle(planBlockDTO.getTitle());
+                    tripDetail.setType(planBlockDTO.getType());
+                    tripDetail.setLocation(planBlockDTO.getLocation());
+                    tripDetail.setMapx(planBlockDTO.getMapx());
+                    tripDetail.setMapy(planBlockDTO.getMapy());
+                    tripDetail.setContentid(planBlockDTO.getContentid());
+                    tripDetail.setFirstimage2(planBlockDTO.getFirstimage2());
 
-                        scheduleRepo.saveDetailSchedule(tripDetail);
+                    scheduleRepo.saveDetailSchedule(tripDetail);
 
-                    }
+                }
+
             }
 
         }catch (Exception e) {
@@ -292,11 +284,11 @@ public class TripScheduleService {
 
         /* [3] planList */
         Map<Integer, List<PlanBlockDTO>> planList = new HashMap<>();
-        List<TripDailySchedule> dailyScheList = scheduleRepo.findAllDailyScheduleBySchedule(resultSchedule);
+        List<TripDailySchedule> dailyScheList = scheduleRepo.findAllDailyBySchedule(resultSchedule);
 
         for (TripDailySchedule dailySchedule: dailyScheList){
             System.out.println("sche222222222222222222222222222222222222222222222222222222222222222222");
-            List<TripDetailSchedule> detailScheList = scheduleRepo.findAllDetailScheduleByDailySchedule(dailySchedule);
+            List<TripDetailSchedule> detailScheList = scheduleRepo.findAllDetailByDaily(dailySchedule);
 
 
             List<PlanBlockDTO> planBlockList = new ArrayList<>();
@@ -339,65 +331,53 @@ public class TripScheduleService {
 
 
 
-
-
-
-    /* 메소드 안에 코드와 repository 코드 수정했으니 잘 동작하는지 확인해봐야 함 (saveSchedule 코드 참고하기) */
     @Transactional /*planList(tripSchedule 페이지에서 수정한 일정)를 업데이트 함 */
-    public Boolean updateSchedule(List<String> dateList, Map<Integer, List<PlanBlockDTO>> planList, int scheduleId){
+    public Boolean updateSchedule(int scheduleId, Map<Integer, List<PlanBlockDTO>> planList){
 
         try{
-            Optional<UserEntity> userEntity = userDAO.findById("yhg9801"); // id 이용해서 UserEntity 엔티티 가져오기 */
-            UserEntity resultUserEntity = userEntity.get();
+            UserEntity user = userDAO.findById("yhg9801").get();
 
-            /*TRIP_SCHEDULE 업데이트 -> mod_date(수정 시간) 컬럼 추가하기 위함*/
-            TripSchedule tripSchedule = scheduleRepo.findById(scheduleId); // id 이용해서 TripSchedule 엔티티 가져오기
+            /*TRIP_SCHEDULE 업데이트 -> mod_date(수정 시간) 입력하기 위함*/
+            TripSchedule tripSchedule = scheduleRepo.findById(scheduleId);
+            tripSchedule.setModDate(LocalDateTime.now()); //변경 감지 사용 -> mod_date(수정 시간) 입력
 
-            tripSchedule.setModDate(LocalDateTime.now());
-
-            /*TRIP_SCHEDULE 에 저장*/
-            scheduleRepo.saveSchedule(tripSchedule); //DB에 update해서 수정시간(mod_date)컬럼을 저장함.
+            /*scheduleId를 외래키로 갖고 있는 TRIP_DAILY_SCHEDULE의 레코드들을 삭제 -> detailSchedule도 cascade로 삭제됨 */
+            List<TripDailySchedule> dailyScheList = scheduleRepo.findAllDailyBySchedule(tripSchedule);
 
 
-            for (Map.Entry<Integer, List<PlanBlockDTO>> entry : planList.entrySet()) {
-
-                /*scheduleId 를 외래키로 갖고 있는 TRIP_DAILY_SCHEDULE의 레코드들을 갖고와서 daily_id를 얻는다*/
-                List<TripDailySchedule> dailyScheList = scheduleRepo.findAllDailyScheduleBySchedule(tripSchedule);
-
-                for (TripDailySchedule dailySchedule: dailyScheList){
-
-                    /* 얻은 daily_id를 통해 detailSchedule 레코드들을 Update함*/
-                    int day = entry.getKey(); // DAY1
-                    List<PlanBlockDTO> planBlocks = entry.getValue(); // PlanBlockDTO 목록
+            //detailSchedule 삭제
+            for (TripDailySchedule dailySchedule: dailyScheList) { //Day 1, 2, 3
+                int updatedRows = scheduleRepo.deleteDetailByDaily(dailySchedule);
+                System.out.println("!!!!!!!!!!!!!!updatedRows:"+ updatedRows);
+            }
 
 
-                    /*TRIP_DETAIL_SCHEDULE 에 저장(=Update)*/
-                    // 각 PlanBlockDTO를  TripDetailSchedule Entity로 변환하여 저장
-                    for(PlanBlockDTO planBlockDTO : planBlocks) {
-                        //복합키 이용해 하나의 detailSchedule 찾아음
-                        DetailScheduleID detailScheId = new DetailScheduleID(planBlockDTO.getOrder(), dailySchedule);
-                        TripDetailSchedule detailSchedule = scheduleRepo.findDetailScheduleById(detailScheId);
+            for (Map.Entry<Integer, List<PlanBlockDTO>> entry : planList.entrySet()) { //Day 1,2,3 있으면 3번 반복함
+                int day = entry.getKey(); // DAY1
+                List<PlanBlockDTO> planBlocks = entry.getValue(); // PlanBlockDTO 목록
+                System.out.println("12/8 3333333333333333333333333333333333333");
 
-                        detailSchedule.setTripDailySchedule(dailySchedule);
-                        detailSchedule.setOrderDay(day);
-                        detailSchedule.setOrder(planBlockDTO.getOrder());
-                        detailSchedule.setPlaceOrder(planBlockDTO.getPlaceOrder());
-                        detailSchedule.setTitle(planBlockDTO.getTitle());
-                        detailSchedule.setType(planBlockDTO.getType());
-                        detailSchedule.setLocation(planBlockDTO.getLocation());
-                        detailSchedule.setMapx(planBlockDTO.getMapx());
-                        detailSchedule.setMapy(planBlockDTO.getMapy());
-                        detailSchedule.setContentid(planBlockDTO.getContentid());
+                /*TRIP_DETAIL_SCHEDULE에 저장*/
+                for(PlanBlockDTO planBlockDTO : planBlocks) {
+                    TripDetailSchedule tripDetail = new TripDetailSchedule();
+                    //tripDetail.setTripDailySchedule(tripDaily);
+                    tripDetail.setTripDailySchedule(dailyScheList.get(day-1));
+                    tripDetail.setOrderDay(day);
+                    tripDetail.setOrder(planBlockDTO.getOrder());
+                    tripDetail.setPlaceOrder(planBlockDTO.getPlaceOrder());
+                    tripDetail.setTitle(planBlockDTO.getTitle());
+                    tripDetail.setType(planBlockDTO.getType());
+                    tripDetail.setLocation(planBlockDTO.getLocation());
+                    tripDetail.setMapx(planBlockDTO.getMapx());
+                    tripDetail.setMapy(planBlockDTO.getMapy());
+                    tripDetail.setContentid(planBlockDTO.getContentid());
+                    tripDetail.setFirstimage2(planBlockDTO.getFirstimage2());
 
-                        scheduleRepo.saveDetailSchedule(detailSchedule);
-
-
-                    }
+                    scheduleRepo.saveDetailSchedule(tripDetail);
 
                 }
 
             }
-
 
         }catch (Exception e) {
             return false;

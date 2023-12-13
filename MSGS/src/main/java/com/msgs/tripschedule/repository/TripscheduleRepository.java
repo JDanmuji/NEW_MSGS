@@ -1,6 +1,5 @@
 package com.msgs.tripschedule.repository;
 
-import com.msgs.msgs.entity.tripschedule.DetailScheduleID;
 import com.msgs.msgs.entity.tripschedule.TripDailySchedule;
 import com.msgs.msgs.entity.tripschedule.TripDetailSchedule;
 import com.msgs.msgs.entity.tripschedule.TripSchedule;
@@ -35,20 +34,31 @@ public class TripscheduleRepository {
         return em.find(TripSchedule.class, id);
     }
 
-    //updateSchedule에서 쓰임.
-    public TripDetailSchedule findDetailScheduleById(DetailScheduleID detailScheId){
-        return em.find(TripDetailSchedule.class, detailScheId);
-    }
-
 
     /* 리스트 조회 */
-    public List<TripDailySchedule> findAllDailyScheduleBySchedule(TripSchedule tripSchedule){
-        return em.createQuery("select d from TripDailySchedule d where d.tripSchedule = :tripSchedule", TripDailySchedule.class)
+    public List<TripDailySchedule> findAllDailyBySchedule(TripSchedule tripSchedule){
+        return em.createQuery("select d from TripDailySchedule d "
+                + "where d.tripSchedule = :tripSchedule order by  d.dailyId", TripDailySchedule.class)
             .setParameter("tripSchedule", tripSchedule) //파라미터 바인딩
             .getResultList();
     }
 
-    public List<TripDetailSchedule> findAllDetailScheduleByDailySchedule(TripDailySchedule dailySchedule){
+    /* TRIP_DETAIL_SCHEDULE의 레코드들을 삭제 */
+    public int deleteDetailByDaily(TripDailySchedule dailySchedule){
+        return em.createQuery("delete from TripDetailSchedule d where d.tripDailySchedule=:dailySchedule")
+            .setParameter("dailySchedule", dailySchedule)
+            .executeUpdate();
+    }
+
+    /* TRIP_DAILY_SCHEDULE의 레코드들을 삭제 -> detailSchedule도 cascade로 삭제됨 */
+//    public int deleteDailyByScheduleId(TripSchedule tripSchedule){
+//        return em.createQuery("delete from TripDailySchedule d where d.tripSchedule=:tripSchedule")
+//            .setParameter("tripSchedule", tripSchedule)
+//            .executeUpdate();
+//    }
+
+
+    public List<TripDetailSchedule> findAllDetailByDaily(TripDailySchedule dailySchedule){
         return em.createQuery("select d from TripDetailSchedule d where d.tripDailySchedule = :dailySchedule", TripDetailSchedule.class)
             .setParameter("dailySchedule", dailySchedule) //파라미터 바인딩
             .getResultList();

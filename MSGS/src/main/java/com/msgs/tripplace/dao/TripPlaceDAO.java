@@ -21,15 +21,15 @@ public interface TripPlaceDAO extends JpaRepository<PlaceReview, String> {
 	        "ORDER BY pr.regDate DESC, pr.id DESC")
 	List<TripPlaceReviewDTO> findAllWithUserOrderDate(@Param("contentId") String contentId);
 	
-	@Query("SELECT new com.msgs.msgs.dto.TripPlaceReviewDTO(pr, u, ui) " +
-	        "FROM PlaceReview pr " +
-	        "JOIN pr.userPlaceReview u " +
-	        "LEFT JOIN u.userImg ui " +
-	        "LEFT JOIN pr.userLikes l " +
-	        "WHERE pr.contentId = :contentId " +
-	        "GROUP BY pr, u, ui.imgPath " +
-	        "ORDER BY COUNT(l) DESC, pr.regDate DESC, pr.id DESC")
-	List<TripPlaceReviewDTO> findAllWithUserOrderLike(@Param("contentId") String contentId);
+//	@Query("SELECT new com.msgs.msgs.dto.TripPlaceReviewDTO(pr, u, ui) " +
+//	        "FROM PlaceReview pr " +
+//	        "JOIN pr.userPlaceReview u " +
+//	        "LEFT JOIN u.userImg ui " +
+//	        "LEFT JOIN pr.userLikes l " +
+//	        "WHERE pr.contentId = :contentId " +
+//	        "GROUP BY pr, u, ui.imgPath " +
+//	        "ORDER BY COUNT(l) DESC, pr.regDate DESC, pr.id DESC")
+//	List<TripPlaceReviewDTO> findAllWithUserOrderLike(@Param("contentId") String contentId);
 
 	// 유저별 작성 리뷰수 조회
 	@Query("SELECT COUNT(pr) FROM PlaceReview pr WHERE pr.userPlaceReview.id = :userId")

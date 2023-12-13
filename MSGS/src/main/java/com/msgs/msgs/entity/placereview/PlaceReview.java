@@ -1,7 +1,6 @@
 package com.msgs.msgs.entity.placereview;
 
 import com.msgs.msgs.entity.user.UserEntity;
-import com.msgs.msgs.entity.user.UserLike;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -9,7 +8,6 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 
 @Entity
 @Table(name = "place_review")
@@ -60,6 +58,6 @@ public class PlaceReview {
     @OneToMany( mappedBy = "placeReview")
     private List<PlaceReviewImg> placeReviewImgs = new ArrayList<>();
 
-    @OneToMany(mappedBy = "placeReview")
-    private List<UserLike>  userLikes = new ArrayList<>();
+//    @OneToMany(mappedBy = "placeReview")
+//    private List<UserLike>  userLikes = new ArrayList<>();
 }

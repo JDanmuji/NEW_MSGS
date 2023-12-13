@@ -1,19 +1,16 @@
 package com.msgs.msgs.entity.user;
 
-import com.msgs.msgs.entity.placereview.PlaceReview;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 @Entity
 @Table(name="user_like")
 @Getter @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class UserLike {
+public class PlaceLike {
 
     @Id
     @Column(name = "like_id", length = 20)
@@ -25,13 +22,16 @@ public class UserLike {
     // @JoinColumn이 선언된 Entity에서 값 변환을 해야 함
     private UserEntity userLike;
 
-    //join with place review
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "review_id", nullable = false)
-    private PlaceReview placeReview;
+//    //join with place review
+//    @ManyToOne(fetch = FetchType.LAZY)
+//    @JoinColumn(name = "review_id", nullable = false)
+//    private PlaceReview placeReview;
 
     @Column(name = "like_date")
     private Date date;
+
+    @Column(name="content_id", nullable=false, length = 20)
+    private String content_id;
 
 
 }

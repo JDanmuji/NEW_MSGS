@@ -84,11 +84,11 @@ public class TripPlaceServiceImpl implements TripPlaceService {
 	public List<TripPlaceReviewDTO> getReviewList(Boolean isSortedByLike, String contentId) {
 	    List<TripPlaceReviewDTO> reviewList;
 	    
-	    if (isSortedByLike) {
-	        reviewList = tripPlaceDAO.findAllWithUserOrderLike(contentId);
-	    } else {
+//	    if (isSortedByLike) {
+//	        reviewList = tripPlaceDAO.findAllWithUserOrderLike(contentId);
+//	    } else {
 	        reviewList = tripPlaceDAO.findAllWithUserOrderDate(contentId);
-	    }
+//	    }
 	    
 	    for (TripPlaceReviewDTO review : reviewList) {
 	    	// 유저가 지금까지 작성한 리뷰 수 추가

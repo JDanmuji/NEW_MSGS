@@ -9,7 +9,7 @@ const CitiesData = [
 		engTitle: 'GAPYEONG',
 		mapLat: 37.783248, //위도
 		mapLon: 127.543837, //경도
-		imageUrl: 'https://kr.object.ncloudstorage.com/msgs-file-server/cities-image/famous-city-gapeong.webp',
+		imageUrl: 'https://msgs-s3-bucket.s3.ap-northeast-2.amazonaws.com/city/gapyeong.jpg',
 	},
 	{
 		areaId: 2,
@@ -20,7 +20,7 @@ const CitiesData = [
 		engTitle: 'GANGNEUNG',
 		mapLat: 37.773466, //위도
 		mapLon: 128.920264, //경도
-		imageUrl: 'https://kr.object.ncloudstorage.com/msgs-file-server/cities-image/famous-city-gangreung.webp',
+		imageUrl: 'https://msgs-s3-bucket.s3.ap-northeast-2.amazonaws.com/city/gangneung.jpg',
 	},
 	{
 		areaId: 3,
@@ -31,7 +31,7 @@ const CitiesData = [
 		engTitle: 'GYEONGJU',
 		mapLat: 35.839895, //위도
 		mapLon: 129.199062, //경도
-		imageUrl: 'https://kr.object.ncloudstorage.com/msgs-file-server/cities-image/famous-city-geongju.webp',
+		imageUrl: 'https://msgs-s3-bucket.s3.ap-northeast-2.amazonaws.com/city/gyeongju.jpg',
 	},
 	{
 		areaId: 4,
@@ -42,7 +42,7 @@ const CitiesData = [
 		engTitle: 'BUSAN',
 		mapLat: 35.175758, //위도
 		mapLon: 129.089004, //경도
-		imageUrl: 'https://kr.object.ncloudstorage.com/msgs-file-server/cities-image/famous-city-busan.webp',
+		imageUrl: 'https://msgs-s3-bucket.s3.ap-northeast-2.amazonaws.com/city/busan.jpg',
 	},
 	{
 		areaId: 5,
@@ -53,7 +53,7 @@ const CitiesData = [
 		engTitle: 'YEOSU',
 		mapLat: 34.777411, //위도
 		mapLon: 127.621257, //경도
-		imageUrl: 'https://kr.object.ncloudstorage.com/msgs-file-server/cities-image/famous-city-yeosu.webp',
+		imageUrl: 'https://msgs-s3-bucket.s3.ap-northeast-2.amazonaws.com/city/yeosu.jpg',
 	},
 	{
 		areaId: 6,
@@ -64,7 +64,7 @@ const CitiesData = [
 		engTitle: 'INCHEON',
 		mapLat: 37.461853, //위도
 		mapLon: 126.728395, //경도
-		imageUrl: 'https://kr.object.ncloudstorage.com/msgs-file-server/cities-image/famous-city-incheon.webp',
+		imageUrl: 'https://msgs-s3-bucket.s3.ap-northeast-2.amazonaws.com/city/incheon.jpg',
 	},
 	{
 		areaId: 7,
@@ -75,7 +75,7 @@ const CitiesData = [
 		engTitle: 'JEONJU',
 		mapLat: 35.819565, //위도
 		mapLon: 127.139551, //경도
-		imageUrl: 'https://kr.object.ncloudstorage.com/msgs-file-server/cities-image/famous-city-jeonju.webp',
+		imageUrl: 'https://msgs-s3-bucket.s3.ap-northeast-2.amazonaws.com/city/jeonju.jpg',
 	},
 	{
 		areaId: 8,
@@ -86,7 +86,7 @@ const CitiesData = [
 		engTitle: 'JEJU',
 		mapLat: 33.471943, //위도
 		mapLon: 126.555592, //경도
-		imageUrl: 'https://kr.object.ncloudstorage.com/msgs-file-server/cities-image/famous-city-jeju.webp',
+		imageUrl: 'https://msgs-s3-bucket.s3.ap-northeast-2.amazonaws.com/city/jeju.jpg',
 	},
 	{
 		areaId: 9,
@@ -97,7 +97,7 @@ const CitiesData = [
 		engTitle: 'CHUNCHEON',
 		mapLat: 37.866466, //위도
 		mapLon: 127.723372, //경도
-		imageUrl: 'https://kr.object.ncloudstorage.com/msgs-file-server/cities-image/famous-city-chuncheon.webp',
+		imageUrl: 'https://msgs-s3-bucket.s3.ap-northeast-2.amazonaws.com/city/chuncheon.jpg',
 	},
 	{
 		areaId: 10,
@@ -108,7 +108,7 @@ const CitiesData = [
 		engTitle: 'TAEAN',
 		mapLat: 36.719694, //위도
 		mapLon: 126.308368, //경도
-		imageUrl: 'https://kr.object.ncloudstorage.com/msgs-file-server/cities-image/famous-city-teayan.webp',
+		imageUrl: 'https://msgs-s3-bucket.s3.ap-northeast-2.amazonaws.com/city/teayan.jpg',
 	},
 	{
 		areaId: 11,
@@ -119,7 +119,7 @@ const CitiesData = [
 		engTitle: 'TONGYEONG',
 		mapLat: 34.854125, //위도
 		mapLon: 128.415053, //경도
-		imageUrl: 'https://kr.object.ncloudstorage.com/msgs-file-server/cities-image/famous-city-tongyeong.webp',
+		imageUrl: 'https://msgs-s3-bucket.s3.ap-northeast-2.amazonaws.com/city/geojetongyeong.jpg',
 	},
 	{
 		areaId: 12,
@@ -130,7 +130,7 @@ const CitiesData = [
 		engTitle: 'POHANG',
 		mapLat: 36.019893, //위도
 		mapLon: 129.361635, //경도
-		imageUrl: 'https://kr.object.ncloudstorage.com/msgs-file-server/cities-image/famous-city-pohang.webp',
+		imageUrl: 'https://msgs-s3-bucket.s3.ap-northeast-2.amazonaws.com/city/pohang.jpg',
 	},
 ]
 
