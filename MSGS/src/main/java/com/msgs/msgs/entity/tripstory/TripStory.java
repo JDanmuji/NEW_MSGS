@@ -73,4 +73,11 @@ public class TripStory {
 		this.modDate = LocalDateTime.now();
 	}
 
+	public void addStoryImgs(StoryImg storyImg) {
+		storyImgs.add(storyImg);
+		storyImg.setTripStoryImg(this);
+	}
+
+
+
 }

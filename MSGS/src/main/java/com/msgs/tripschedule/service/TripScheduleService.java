@@ -5,8 +5,8 @@ import com.msgs.msgs.entity.tripschedule.TripDailySchedule;
 import com.msgs.msgs.entity.tripschedule.TripDetailSchedule;
 import com.msgs.msgs.entity.tripschedule.TripSchedule;
 import com.msgs.msgs.entity.user.UserEntity;
+import com.msgs.msgs.jwt.JwtTokenProvider;
 import com.msgs.tripschedule.repository.TripscheduleRepository;
-import com.msgs.user.dao.UserDAO;
 import java.time.LocalDateTime;
 import java.util.Arrays;
 import com.google.gson.Gson;
@@ -16,6 +16,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+
+import com.msgs.user.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -23,6 +25,8 @@ import org.json.XML;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.reactive.function.client.WebClient;
@@ -37,11 +41,15 @@ public class TripScheduleService {
     @Value("${tourApi.decodingKey}")
     private String decodingKey;
 
+    @Value("${jwt.secret}")
+    private String secretKey;
+
     List<Integer> contentTypeIds = Arrays.asList(12, 39); //place의 contentId 저장해놓음. 12=관광지, 39=음식점
 
     Gson gson = new Gson();
 
-    private final UserDAO userDAO;
+    private final UserRepository userRepo;
+
     private final TripscheduleRepository scheduleRepo;
 
 
@@ -202,10 +210,19 @@ public class TripScheduleService {
 
 
     @Transactional   /* planList(tripSchedule 페이지에서 입력한 일정)를 저장함 */
-    public Boolean saveSchedule(List<String> dateList, Map<Integer, List<PlanBlockDTO>> planList, String cityName){
+    public Boolean saveSchedule(List<String> dateList, Map<Integer, List<PlanBlockDTO>> planList, String cityName, String userToken){
 
         try{
-            Optional<UserEntity> userEntity = userDAO.findById("yhg9801"); // id 이용해서 User엔티티 가져오기 */
+
+            /*TRIP_SCHEDULE*/
+            JwtTokenProvider token = new JwtTokenProvider(secretKey);
+
+            String userId = token.getAuthentication(userToken).getName();
+
+            Optional<UserEntity> userEntity = userRepo.findById(userId);
+            //Optional<UserEntity> userEntity = userDAO.findById("yhg9801"); // id 이용해서 UserEntity 엔티티 가져오기 */
+
+
             UserEntity resultUserEntity = userEntity.get();
 
             /*TRIP_SCHEDULE*/
@@ -335,7 +352,17 @@ public class TripScheduleService {
     public Boolean updateSchedule(int scheduleId, Map<Integer, List<PlanBlockDTO>> planList){
 
         try{
-            UserEntity user = userDAO.findById("yhg9801").get();
+
+
+            //JwtTokenProvider token = new JwtTokenProvider(userToken);
+            Optional<UserEntity> userEntity = userRepo.findById("yhg9801"); // id 이용해서 UserEntity 엔티티 가져오기 */
+            UserEntity resultUserEntity = userEntity.get();
+
+            /*TRIP_SCHEDULE 업데이트 -> mod_date(수정 시간) 컬럼 추가하기 위함*/
+            TripSchedule tripSchedule = scheduleRepo.findById(scheduleId); // id 이용해서 TripSchedule 엔티티 가져오기
+
+            tripSchedule.setModDate(LocalDateTime.now());
+
 
             /*TRIP_SCHEDULE 업데이트 -> mod_date(수정 시간) 입력하기 위함*/
             TripSchedule tripSchedule = scheduleRepo.findById(scheduleId);

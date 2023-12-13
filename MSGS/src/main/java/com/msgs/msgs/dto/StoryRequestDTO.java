@@ -12,11 +12,32 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 public class StoryRequestDTO {
-    private Map<String, Object> storyData; //schdeuleId, cityName, title, rating, comment
+//    private Map<String, Object> storyData; //schdeuleId, cityName, title, rating, comment
+//
+//    private List<String> dateList;
+//    private Map<Integer, List<StoryBlockDTO>> storyList;
+//    private Map<Integer, String> dailyComment;
+//
+//
+//
+//
 
     private List<String> dateList;
-    private Map<Integer, List<StoryBlockDTO>> storyList;
+
     private Map<Integer, String> dailyComment;
+
+    private Map<String, Object> storyData; //schdeuleId, cityName, title, rating, comment
+
+    private Map<Integer, List<StoryBlockDTO>> storyList;
+    private String cityName;
+
+    //updateSchedule()에서 필요
+    private String scheduleId;
+    private String userToken;
+
+
 }
+
+
 
 

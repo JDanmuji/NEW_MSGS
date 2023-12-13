@@ -3,7 +3,7 @@ import styles from "./UploadBtn.module.css";
 
 // 여행 이야기 페이지에서 write 아이콘 누르면 뜨는 여행 이야기 작성 모달창입니다.
 
-const UploadPhoto = ({ photos, setPhotos }) => {
+const UploadPhoto = ({ photos, setPhotos, handlWriteImg }) => {
     const fileInputRef = useRef(null);
     const [selectedPhotos, setSelectedPhotos] = useState([]);
 
@@ -64,13 +64,14 @@ const UploadPhoto = ({ photos, setPhotos }) => {
             console.log(results);
 
             setSelectedPhotos(results);
+            handlWriteImg(results);
         });
 
-        Promise.all(originPhotos).then((results) => {
-            console.log(results);
+        // Promise.all(originPhotos).then((results) => {
+        //     console.log(results);
 
-            setPhotos(results);
-        });
+        //     setPhotos(results);
+        // });
     };
 
     return (

@@ -1,5 +1,5 @@
 tourApi:
-#  decodingKey: PxzwzL1YV7V3yrJKzg9dIokQIFvxN6XmPKo+zbskQ7TVDYVhgsBn5IIZDAkUPfncj7Hlcpw+oJCCVdSdkLhuyw==
+  #  decodingKey: PxzwzL1YV7V3yrJKzg9dIokQIFvxN6XmPKo+zbskQ7TVDYVhgsBn5IIZDAkUPfncj7Hlcpw+oJCCVdSdkLhuyw==
   decodingKey: xOWMRtPKnRvf0yVjbZCmX7bZlUbhfd581Ldi10fyg4b3TjvJxpjlvjH7v6Qu+mfxcUxuOxh94w2XAhcsAbWn+g==
 
 busApi:
@@ -18,9 +18,17 @@ ChatBot:
   secretKey: WkJ4elBWdVJnc3ZOZnBPTUVqbUF3UG1ZUFRBTWNmSWQ=
   apiUrl: https://iio8vtfz80.apigw.ntruss.com/custom/v1/10979/56191b95bfa8f08c1497b6068768b7648c900f4ec853bc73be97976bc7ce8989
 
-objectStorage : 
+objectStorage :
   endPoint : https://kr.object.ncloudstorage.com
   regionName : regionName
   accessKey: 6fCMolib7QBe1JKwSafq
   secretKey: miJ3BdZsKPsE3WLliwHPJbJS7qaxby6F6rDiVTJa
   bucketName: msgs-file-server
+
+s3:
+  access-key: AKIAZBOPHHQFLOYQKKFQ
+  secret-key: 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
+  bucket: msgs-s3-bucket
+  region: ap-northeast-2
+  stack:
+    auto: false

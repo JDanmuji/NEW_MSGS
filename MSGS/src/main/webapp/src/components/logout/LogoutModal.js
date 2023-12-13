@@ -10,6 +10,7 @@ const LogoutModal = (props) => {
         props.loginHandler("");
         props.onClose(false);
         Cookies.remove("token");
+        localStorage.removeItem("token")
         navigate("/");
     };
 

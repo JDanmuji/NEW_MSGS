@@ -1,5 +1,6 @@
 .metadata/
 MSGS/.gradle
+MSGS/gradle
 MSGS/.setting
 MSGS/src/main/webapp/node_modules
 .idea

@@ -10,7 +10,9 @@ const StickyBanner = () => {
   // API 데이터 담을 state
   const [data, setData] = useState([]);
 
-  const tokenValue = Cookies.get("token");
+  //const tokenValue = Cookies.get("token");
+
+  const tokenValue = localStorage.getItem("token")
 
   useEffect(() => {
     // back-end에서 API 호출

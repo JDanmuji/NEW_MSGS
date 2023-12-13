@@ -55,8 +55,17 @@ public class TripScheduleController {
         List<String> dateList = scheduleRequest.getDateList();
         Map<Integer, List<PlanBlockDTO>> planList = scheduleRequest.getPlanList();
         String cityName = scheduleRequest.getCityName();
+        String userToken = scheduleRequest.getUserToken();
 
-        Boolean isSuccess = tripScheduleService.saveSchedule(dateList, planList, cityName);
+
+        System.out.println("dateList, planList, cityName 받았다!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+        System.out.println(dateList);
+        System.out.println(planList);
+        System.out.println(cityName);
+        System.out.println(userToken);
+
+        Boolean isSuccess = tripScheduleService.saveSchedule(dateList, planList, cityName, userToken);
+
 
 
         if(isSuccess){

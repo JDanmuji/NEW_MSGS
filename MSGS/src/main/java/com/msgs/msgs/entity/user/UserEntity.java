@@ -16,10 +16,16 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.Random;
 
 
 @Entity
 @Table(name="user")
+@NamedStoredProcedureQuery(name = "createUserId",
+        procedureName = "create_user_id", parameters = {
+        @StoredProcedureParameter(mode = ParameterMode.IN, name = "_userType", type = String.class),
+        @StoredProcedureParameter(mode = ParameterMode.OUT, name = "_userId", type = String.class)
+     })
 @Getter @Setter
 @NoArgsConstructor
 @AllArgsConstructor
@@ -29,11 +35,18 @@ public class UserEntity implements UserDetails {
    @Column(name = "user_id", length = 20)
    private String id;
 
-    @PrePersist
-    public void prePersist() {
-        String temp_id = "will_be_triggered";
-        this.id = temp_id;
-    }
+//    @PrePersist
+//    public void prePersist() {
+//
+//       Random random = new Random(); //랜덤 객체 생성(디폴트 시드값 : 현재시간)
+//       random.setSeed(System.currentTimeMillis());
+//       int num = random.nextInt(100000);
+//
+//
+//
+//       String temp_id = "will_be_triggered";
+//       this.id = temp_id;
+//    }
 
    @Column(name = "user_type", length = 5)
    private String type;

@@ -1,7 +1,9 @@
 package com.msgs.msgs.jwt.service;
 
 import com.msgs.msgs.dto.TokenInfo;
+import com.msgs.msgs.entity.user.UserEntity;
 import com.msgs.msgs.jwt.JwtTokenProvider;
+import com.msgs.user.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.json.JSONObject;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -10,16 +12,23 @@ import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Optional;
+
 @Service
 @Transactional(readOnly = true)
 @RequiredArgsConstructor
-public class UserService {
+public class UserJwtService {
 
     private final AuthenticationManagerBuilder authenticationManagerBuilder;
     private final JwtTokenProvider jwtTokenProvider;
+    private final UserRepository userRepository;
+
 
     @Transactional
     public TokenInfo login(String userEmail, String password) {
+
+        Optional<UserEntity> userSearch = userRepository.findByEmail(userEmail);
+
         // 1. Login ID/PW 를 기반으로 Authentication 객체 생성
         // 이때 authentication 는 인증 여부를 확인하는 authenticated 값이 false
         UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(userEmail, password);

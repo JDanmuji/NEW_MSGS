@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
+import com.msgs.user.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,29 +21,27 @@ import com.msgs.msgs.entity.user.UserEntity;
 import com.msgs.msgs.entity.user.UserImg;
 import com.msgs.tripplace.dao.PlaceReviewImageDAO;
 import com.msgs.tripplace.dao.TripPlaceDAO;
-import com.msgs.user.dao.UserDAO;
 
 import jakarta.persistence.PrePersist;
 
 @Service
 public class TripPlaceServiceImpl implements TripPlaceService {
-
 	@Autowired
-	private UserDAO userDAO;
+	private UserRepository userRepo;
 
 	@Autowired
 	private TripPlaceDAO tripPlaceDAO;
 	
 	@Autowired
 	private PlaceReviewImageDAO placeReviewImageDAO;
-	
+
 	@Override
 	public void reviewSubmit(TripPlaceReviewDTO tripPlaceReviewDTO) {
 		System.out.println(tripPlaceReviewDTO);
 		PlaceReview placeReview = new PlaceReview();
 		
 		// userId 이용한 UserEntity 엔티티 반환
-		Optional<UserEntity> userEntity = userDAO.findById(tripPlaceReviewDTO.getUserId());
+		Optional<UserEntity> userEntity = userRepo.findById(tripPlaceReviewDTO.getUserId());
 		if(userEntity.isPresent()) {
 			UserEntity resultUserEntity = userEntity.get();
 			placeReview.setUserPlaceReview(resultUserEntity);

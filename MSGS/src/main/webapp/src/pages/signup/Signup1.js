@@ -14,9 +14,6 @@ const Signup1 = (props) => {
     const [snsEmail, setSnsEmail] = useState(""); // 이메일
     const [snsType, setSnsType] = useState("M"); // 이메일
 
-    console.log(location.state);
-    console.log(!location.state);
-
     const [email, setEmail] = useState(""); // 이메일
     const [enteredEmail, setEnteredEmail] = useState(""); // 유효성 검사된 이메일
     const [password, setPassword] = useState(""); // 비밀번호
